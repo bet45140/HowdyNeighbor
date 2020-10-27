@@ -17,29 +17,31 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-page="/Index" class="navbar-brand">HowdyNeighbor</a>
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-page="/Index">Home</a></li>
+                        <li><a asp-page="/List">My List</a></li>
+                        <li><a asp-page="/Features">Features</a></li>
+                        <li><a asp-page="/About">About Us</a></li>
+                        <li><a asp-page="/Contact">Contact Us</a></li>
+                        <li><a asp-page="/Login">Login</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/List">My List</a></li>
-                    <li><a asp-page="/Features">Features</a></li>
-                    <li><a asp-page="/About">About Us</a></li>
-                    <li><a asp-page="/Contact">Contact Us</a></li>
-                    <li><a asp-page="/Login">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </nav>
+        <img src="images/HowdyNeighbor.png" height="250" class="img-fluid" alt="Howdy Neighbor Logo" style="display:block; margin-left:auto; margin-right:auto;">
+    </header>
 
     <partial name="_CookieConsentPartial" />
 
