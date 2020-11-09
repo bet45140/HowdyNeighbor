@@ -16,14 +16,16 @@ namespace HowdyNeighbor.Pages
         {
             // TODO: Redo this code, this is just for testing purposes.
             // The real way to do this would be to have a loop that reads tasks from Firebase and adds them to the list.
-
-            DateTime CurrentDate = DateTime.Now; // Current date
-            ChecklistTask TaskA = new ChecklistTask("Make sure that utilities are set up", "In progress", CurrentDate);
-            ChecklistTask TaskB = new ChecklistTask("Research the local school district", "In progress", CurrentDate);
-            ChecklistTask TaskC = new ChecklistTask("Allocate moving budget", "In progress", CurrentDate);
-            ChecklistTasks.Add(TaskA);
-            ChecklistTasks.Add(TaskB);
-            ChecklistTasks.Add(TaskC);
+            if (!ChecklistTasks.Any())
+            {
+                DateTime CurrentDate = DateTime.Now; // Current date
+                ChecklistTask TaskA = new ChecklistTask("Make sure that utilities are set up", "In progress", CurrentDate);
+                ChecklistTask TaskB = new ChecklistTask("Research the local school district", "In progress", CurrentDate);
+                ChecklistTask TaskC = new ChecklistTask("Allocate moving budget", "In progress", CurrentDate);
+                ChecklistTasks.Add(TaskA);
+                ChecklistTasks.Add(TaskB);
+                ChecklistTasks.Add(TaskC);
+            }
         }
     }
 }
