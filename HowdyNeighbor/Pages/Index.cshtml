@@ -3,8 +3,24 @@
 @{
     ViewData["Title"] = "Home";
 }
-<h2>@ViewData["Title"]</h2>
+<div class="text-center">
+<h2><strong>Welcome to Howdy Neighbor, your #1 moving resource.</strong></h2>
+<h3><strong>Let's Get Started!</strong></h3>
+</div><div></div>
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Still Searching?</h3>
+        <p>Enter an address below to start your new home search checklist</p>
+        <form>
+            <p>
+                Address: <input type="text" />
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <h3>Moving In?</h3>
+        <p>If you are ready to begin your move-in reminder checklist, <br />continue <a asp-page="/List">here</a></p>
 
-<p>Welcome to Howdy Neighbor, your #1 moving resource.</p>
-<p>To get started, you can create a moving checklist using one of our default templates, or you can create a custom checklist of your own.</p>
-<p>To save a checklist, sign up with an account of your choosing (Facebook, Google, etc.)</p>
+    </div>
+</div>
