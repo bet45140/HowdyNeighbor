@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal;
 
 namespace HowdyNeighbor.Pages
 {
-    public class ListModel : PageModel
+    public class MovingListModel : PageModel
     {
         public static List<ChecklistTask> ChecklistTasks = new List<ChecklistTask>();
         public void OnGet()

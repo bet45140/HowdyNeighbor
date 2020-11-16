@@ -1,0 +1,29 @@
+﻿@page
+@model HowdyNeighbor.Pages.MovingListModel
+@{
+    ViewData["Title"] = "My List";
+}
+<h2>@ViewData["Title"]</h2>
+
+<p>View a moving checklist that you have saved.</p>
+
+<form method="post">
+    <table class="table">
+        <tr>
+            <th>Completed</th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+        @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
+        {
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>@MovingListModel.ChecklistTasks[i].action</td>
+            <td>@MovingListModel.ChecklistTasks[i].status</td>
+            <td>@MovingListModel.ChecklistTasks[i].date.ToShortDateString()</td>
+        </tr>
+        }
+    </table>
+    <button>Update</button>
+</form>

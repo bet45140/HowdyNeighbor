@@ -1,0 +1,40 @@
+﻿@page
+@model HowdyNeighbor.Pages.SearchListModel
+@{
+    ViewData["Title"] = "My List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>View a search checklist that you have saved.</p>
+
+<form method="post">
+    <table class="table">
+        <tr>
+            <th>Completed</th>
+            <th>Task</th>
+            <th>Information</th>
+            <th>Date</th>
+            <th>Importance (1-5)</th>
+        </tr>
+        @for (var i = 0; i < SearchListModel.ChecklistTasks.Count(); i++)
+        {
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>@SearchListModel.ChecklistTasks[i].action</td>
+            <td>@SearchListModel.ChecklistTasks[i].status</td>
+            <td>@SearchListModel.ChecklistTasks[i].date.ToShortDateString()</td>
+            <td>
+                <select name="importance">
+                    <option value="1">1 (Unimportant)</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5 (Most important)</option>
+                </select>
+            </td>
+        </tr>
+        }
+    </table>
+    <button>Update</button>
+</form>
