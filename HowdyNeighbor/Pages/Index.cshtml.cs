@@ -9,11 +9,12 @@ namespace HowdyNeighbor.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+
+        public IActionResult OnPostSearchList(string searchString)
         {
-
+            TempData["searchString"] = searchString;
+            return RedirectToPage("/SearchList");
         }
-
     }
 
 }

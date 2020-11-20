@@ -1,13 +1,17 @@
 ﻿@page
 @model HowdyNeighbor.Pages.SearchListModel
 @{
-    ViewData["Title"] = "My List";
+    ViewData["Title"] = "SearchList";
 }
 
-<h2>@ViewData["Title"]</h2>
-
-<p>View a search checklist that you have saved.</p>
-
+<h3 style="text-align:center;"><strong>Begin your new checklist for @ViewData["searchString"]</strong></h3>
+<div style="text-align:center;">
+    <iframe width="500"
+            height="350"
+            frameborder="0"
+            src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
+            allowfullscreen></iframe>
+</div>
 <form method="post">
     <table class="table">
         <tr>
@@ -19,22 +23,23 @@
         </tr>
         @for (var i = 0; i < SearchListModel.ChecklistTasks.Count(); i++)
         {
-        <tr>
-            <td><input type="checkbox" /></td>
-            <td>@SearchListModel.ChecklistTasks[i].action</td>
-            <td>@SearchListModel.ChecklistTasks[i].status</td>
-            <td>@SearchListModel.ChecklistTasks[i].date.ToShortDateString()</td>
-            <td>
-                <select name="importance">
-                    <option value="1">1 (Unimportant)</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5 (Most important)</option>
-                </select>
-            </td>
-        </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>@SearchListModel.ChecklistTasks[i].action</td>
+                <td>@SearchListModel.ChecklistTasks[i].status</td>
+                <td>@SearchListModel.ChecklistTasks[i].date.ToShortDateString()</td>
+                <td>
+                    <select name="importance">
+                        <option value="1">1 (Unimportant)</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5 (Most important)</option>
+                    </select>
+                </td>
+            </tr>
         }
     </table>
     <button>Update</button>
 </form>
+<p>Explore features of the Howdy Neighbor site.</p>
