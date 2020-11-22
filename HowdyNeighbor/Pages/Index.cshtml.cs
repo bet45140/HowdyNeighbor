@@ -13,6 +13,7 @@ namespace HowdyNeighbor.Pages
         public IActionResult OnPostSearchList(string searchString)
         {
             TempData["searchString"] = searchString;
+            TempData.Keep();
             return RedirectToPage("/SearchList");
         }
     }
