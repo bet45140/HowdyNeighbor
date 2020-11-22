@@ -11,9 +11,9 @@
     <div class="col-sm-6">
         <h3>Still Searching?</h3>
         <p>Enter an address below to start your new home search checklist</p>
-        <form>
+        <form method="post" asp-page-handler="SearchList">
             <p>
-                Address: <input type="text" />
+                Address: <input type="text" name="searchString" />
                 <input type="submit" value="Search" />
             </p>
         </form>
