@@ -4,23 +4,24 @@
     ViewData["Title"] = "Home";
 }
 <div class="text-center">
-<h2><strong>Moving is stressful... Let Howdy Neighbor help!</strong></h2>
-<h3><strong>Let's Get Started!</strong></h3>
-<p>Login or create an account <a href="Login">here</a> to save new checklists or to view saved checklists</p>
+    <h2 class="text-shrink"><strong>Moving is stressful... Let Howdy Neighbor help!</strong></h2>
+    <h3 class="text-shrink"><strong>Let's Get Started!</strong></h3>
+    <p>Login or create an account <a href="Login">here</a> to save new checklists or to view saved checklists</p>
 </div><div></div>
 <div class="row">
     <div class="col-sm-6">
-        <h3>Still Searching?</h3>
+        <h3 class="text-shrink">Still Searching?</h3>
         <p>Enter an address below to start your new home search checklist</p>
         <form method="post" asp-page-handler="SearchList">
-            <p>
-                Address: <input type="text" name="searchString" />
-                <input type="submit" value="Search" />
-            </p>
+            <div>
+                <input type="text" class="form-control" name="searchString" placeholder="Address">
+            </div><br />
+            <input type="submit" value="Search" />
         </form>
+        <br />
     </div>
     <div class="col-sm-6">
-        <h3>Moving In?</h3>
+        <h3 class="text-shrink">Moving In?</h3>
         <p>If you are ready to begin your move-in reminder checklist, <br />continue <a asp-page="/MovingList">here</a></p>
 
     </div>
