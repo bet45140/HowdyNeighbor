@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HowdyNeighbor.Pages
 {
-    public class CrimeDataModel : PageModel
+    public class AgeDemographicsModel : PageModel
     {
         public void OnGet()
         {
@@ -15,9 +15,9 @@ namespace HowdyNeighbor.Pages
             TempData.Keep();
             ViewData["searchString"] = searchString;
         }
-        public IActionResult OnPostSearchList(string crimeImportance)
+        public IActionResult OnPostSearchList(string ageImportance)
         {
-            TempData["crimeImportance"] = crimeImportance;
+            TempData["ageImportance"] = ageImportance;
             TempData.Keep();
             return RedirectToPage("/SearchList");
         }

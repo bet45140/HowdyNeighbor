@@ -15,5 +15,11 @@ namespace HowdyNeighbor.Pages
             TempData.Keep();
             ViewData["searchString"] = searchString;
         }
+        public IActionResult OnPostSearchList(string trafficImportance)
+        {
+            TempData["trafficImportance"] = trafficImportance;
+            TempData.Keep();
+            return RedirectToPage("/SearchList");
+        }
     }
 }

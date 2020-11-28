@@ -3,6 +3,39 @@
 @{
     ViewData["Title"] = "School District";
 }
-
 <h3 class="text-center">Local School District Information for: <br /><br /><strong>@ViewData["searchString"]</strong></h3>
+
+<div class="text-center">
+    <h4>How would you rate these findings?</h4>
+<form method="post" asp-page-handler="SearchList">
+    <select name="schoolImportance">
+        <option value="0">No Rating</option>
+        <option value="1">1 (Poor)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Great)</option>
+    </select>
+    <input type="submit" value="Save rating and return to checklist">
+</form>
+</div>
+
+<br /><br />
+<form method="post">
+    <table class="table">
+        <tr>
+            <th>School Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+        </tr>
+        @for (var i = 0; i < SchoolDistrictModel.schoolList.Count(); i++)
+        {
+            <tr>
+                <td>@SchoolDistrictModel.schoolList[i].SchoolName</td>
+                <td>@SchoolDistrictModel.schoolList[i].SchoolAddress</td>
+                <td>@SchoolDistrictModel.schoolList[i].SchoolPhoneNumber</td>
+            </tr>
+        }
+    </table>
+</form>
 

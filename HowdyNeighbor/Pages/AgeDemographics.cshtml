@@ -1,16 +1,15 @@
 ﻿@page
-@model HowdyNeighbor.Pages.CrimeDataModel
+@model HowdyNeighbor.Pages.AgeDemographicsModel
 @{
-    ViewData["Title"] = "Crime Data";
+    ViewData["Title"] = "Age Demographics";
 }
-<h2>@ViewData["Title"]</h2>
 
-<h3 class="text-center">Local Crime Data for: <br /><br /><strong>@ViewData["searchString"]</strong></h3>
+<h3 class="text-center">Area Age Demographics for: <br /><br /><strong>@ViewData["searchString"]</strong></h3>
 
 <div class="text-center">
     <h4>How would you rate these findings?</h4>
     <form method="post" asp-page-handler="SearchList">
-        <select name="crimeImportance">
+        <select name="ageImportance">
             <option value="0">No Rating</option>
             <option value="1">1 (Poor)</option>
             <option value="2">2</option>

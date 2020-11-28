@@ -12,3 +12,7 @@
 #nav-background {
     background-color: #CADCE6;
 }
+
+.checked {
+    color: orange;
+}

@@ -16,6 +16,21 @@ namespace HowdyNeighbor.Pages
             TempData.Keep();
             ViewData["searchString"] = searchString;
 
+            string schoolImportance = TempData["schoolImportance"] as string;
+            TempData.Keep();
+            ViewData["schoolImportance"] = schoolImportance;
+
+            string crimeImportance = TempData["crimeImportance"] as string;
+            TempData.Keep();
+            ViewData["crimeImportance"] = crimeImportance;
+
+            string trafficImportance = TempData["trafficImportance"] as string;
+            TempData.Keep();
+            ViewData["trafficImportance"] = trafficImportance;
+
+            string ageImportance = TempData["ageImportance"] as string;
+            TempData.Keep();
+            ViewData["ageImportance"] = ageImportance;
         }
     }
 }
