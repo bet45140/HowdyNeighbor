@@ -32,5 +32,10 @@ namespace HowdyNeighbor.Pages
             TempData.Keep();
             ViewData["ageImportance"] = ageImportance;
         }
+
+        public IActionResult OnPostSaveChecklistAsync()
+        {
+            return RedirectToPage("/Index");
+        }
     }
 }

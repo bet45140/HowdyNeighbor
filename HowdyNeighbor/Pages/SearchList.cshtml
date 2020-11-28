@@ -3,17 +3,8 @@
 @{
     ViewData["Title"] = "SearchList";
 }
-<div class="row">
-    <div class="col-sm-6">
-        <h3 class="text-center">Begin your new checklist for:<br /><br /><br /><strong>@ViewData["searchString"]</strong></h3>
-    </div>
-    <div class="col-sm-6">
-        <iframe width="350"
-                height="250"
-                frameborder="0"
-                src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
-                allowfullscreen></iframe>
-    </div>
+<div>
+    <h3 class="text-center text-shrink">Begin your new checklist for: <strong>@ViewData["searchString"]</strong></h3>
 </div>
 <form method="post">
     <table class="table">
@@ -76,7 +67,7 @@
                 @if (ViewData["crimeImportance"] is null)
                 {<input type="checkbox" />}
                 else
-                {<input type="checkbox" checked/>}
+                {<input type="checkbox" checked />}
             </td>
             <td>Local Crime Data</td>
             <td><a href="CrimeData">View Data</a></td>
@@ -216,5 +207,12 @@
             </td>
         </tr>
     </table>
-    <button>Save</button>
+    <button method="post" asp-page-handler="SaveChecklist">Save Checklist</button>
 </form>
+<br />
+<div>
+<iframe class="iframe-style"
+        frameborder="0"
+        src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
+        allowfullscreen></iframe>
+</div>
