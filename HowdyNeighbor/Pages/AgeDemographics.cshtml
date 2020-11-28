@@ -4,10 +4,10 @@
     ViewData["Title"] = "Age Demographics";
 }
 
-<h3 class="text-center">Area Age Demographics for: <br /><br /><strong>@ViewData["searchString"]</strong></h3>
+<h3 class="text-center">Area Age Demographics for:<br /><strong>@ViewData["searchString"]</strong></h3>
 
 <div class="text-center">
-    <h4>How would you rate these findings?</h4>
+    <h5>How would you rate these findings?</h5>
     <form method="post" asp-page-handler="SearchList">
         <select name="ageImportance">
             <option value="0">No Rating</option>
@@ -16,7 +16,7 @@
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5 (Great)</option>
-        </select>
+        </select>&nbsp &nbsp
         <input type="submit" value="Save rating and return to checklist">
     </form>
 </div>
