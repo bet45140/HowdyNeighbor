@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal;
 
 namespace HowdyNeighbor.Pages
@@ -20,11 +21,17 @@ namespace HowdyNeighbor.Pages
             {
                 DateTime CurrentDate = DateTime.Now; // Current date
                 ChecklistTask TaskA = new ChecklistTask("Make sure that utilities are set up", "In progress", CurrentDate);
-                ChecklistTask TaskB = new ChecklistTask("Research the local school district", "In progress", CurrentDate);
-                ChecklistTask TaskC = new ChecklistTask("Allocate moving budget", "In progress", CurrentDate);
+                ChecklistTask TaskB = new ChecklistTask("Get in contact with the local school district", "In progress", CurrentDate);
+                ChecklistTask TaskC = new ChecklistTask("Transfer perscriptions to new pharmacy", "In progress", CurrentDate.AddDays(1));
+                ChecklistTask TaskD = new ChecklistTask("Find boxes for household items", "In progress", CurrentDate.AddDays(3));
+                ChecklistTask TaskE = new ChecklistTask("Get in contact with new neighbors", "In progress", CurrentDate.AddDays(6));
+                ChecklistTask TaskF = new ChecklistTask("Purchase parks membership", "In progress", CurrentDate.AddDays(14));
                 ChecklistTasks.Add(TaskA);
                 ChecklistTasks.Add(TaskB);
                 ChecklistTasks.Add(TaskC);
+                ChecklistTasks.Add(TaskD);
+                ChecklistTasks.Add(TaskE);
+                ChecklistTasks.Add(TaskF);
             }
         }
     }

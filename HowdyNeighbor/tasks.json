@@ -1,0 +1,60 @@
+{
+    "task": [
+	{
+	    "Category": "Pets",
+	    "Action": "Get in contact with veterinarian's office"
+	},
+	{
+	    "Category": "Pets",
+	    "Action": "Research local laws and HOA policies for pets"
+	},
+	{
+	    "Category": "Pets",
+	    "Action": "Transfer pet medications to new veterinarian's office"
+	},
+	{
+	    "Category": "Pets",
+	    "Action": "Look for local dog parks"
+	},
+	{
+	    "Category": "Voting",
+	    "Action": "Update voter registration address"
+	},
+	{
+	    "Category": "Voting",
+	    "Action": "Research residency requirements for voting"
+	},
+	{
+	    "Category": "Shipping",
+	    "Action": "Collect cardboard boxes for household items"
+	},
+	{
+	    "Category": "Shipping",
+	    "Action": "Contact moving company"
+	},
+	{
+	    "Category": "Health",
+	    "Action": "Set up perscriptions with new pharmacy"
+	},
+	{
+	    "Category": "Health",
+	    "Action": "Get in contact with local doctor's office"
+	},
+	{
+	    "Category": "Health",
+	    "Action": "Get in contact with local dentist's office"
+	},
+	{
+	    "Category": "Neighborhood",
+	    "Action": "Contact homeowner's association"
+	},
+	{
+	    "Category": "Neighborhood",
+	    "Action": "Contact neighbors"
+	},
+	{
+	    "Category": "School",
+	    "Action": "Contact local school district"
+	},
+    ]
+}
