@@ -1,14 +1,16 @@
 ﻿@page
-@model HowdyNeighbor.Pages.CrimeDataModel
+@model HowdyNeighbor.Pages.CrimeData_LoggedInModel
 @{
     ViewData["Title"] = "Crime Data";
 }
-
+@{
+    Layout = "_Layout_LoggedIn";
+}
 <h3 class="text-center">Local Crime Data for:<br /><strong>@ViewData["searchString"]</strong></h3>
 
 <div class="text-center">
     <h5>How would you rate these findings?</h5>
-    <form method="post" asp-page-handler="SearchList">
+    <form method="post" asp-page-handler="SearchList_LoggedIn">
         <select name="crimeImportance">
             <option value="0">No Rating</option>
             <option value="1">1 (Poor)</option>
@@ -29,13 +31,11 @@
         <th>Homocide Rate</th>
     </tr>
     <tr>
-        @for (var i = 0; i < CrimeDataModel.crimeList.Count(); i++)
-        {
-            <td>@CrimeDataModel.crimeList[i].TheftRate</td>
-            <td>@CrimeDataModel.crimeList[i].AssaultRate</td>
-            <td>@CrimeDataModel.crimeList[i].SexCrimeRate</td>
-            <td>@CrimeDataModel.crimeList[i].HomocideRate</td>
-        }
+        <td>@CrimeDataModel.crimeList[0].TheftRate</td>
+        <td>@CrimeDataModel.crimeList[0].AssaultRate</td>
+        <td>@CrimeDataModel.crimeList[0].SexCrimeRate</td>
+        <td>@CrimeDataModel.crimeList[0].HomocideRate</td>
+
     </tr>
 </table>
 

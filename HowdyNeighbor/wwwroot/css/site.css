@@ -4,7 +4,7 @@
     }
     a.nav-style{
         color: black !important;
-        font-size: 22px !important;
+        font-size: 20px !important;
     }
     .iframe-style {
         width: 100%;
@@ -23,7 +23,7 @@
     }
     a.nav-style{
         color: black !important;
-        font-size:18px !important;
+        font-size:16px !important;
     }
     .iframe-style {
         width: 100%;
@@ -60,6 +60,11 @@ body{
     transition: 0.3s;
 }
 
-    .closebtn:hover {
+.closebtn:hover {
         color: black;
-    }
+}
+
+#pieChart{
+    display: inline-block;
+    margin: 0 auto;
+}

@@ -1,0 +1,47 @@
+﻿@page
+@model HowdyNeighbor.Pages.TrafficDensity_LoggedInModel
+@{
+    ViewData["Title"] = "Traffic Density";
+}
+@{
+    Layout = "_Layout_LoggedIn";
+}
+
+<h3 class="text-center">Traffic Data for:<br /><strong>@ViewData["searchString"]</strong></h3>
+
+<div class="text-center">
+    <h5>How would you rate these findings?</h5>
+    <form method="post" asp-page-handler="SearchList_LoggedIn">
+        <select name="trafficImportance">
+            <option value="0">No Rating</option>
+            <option value="1">1 (Poor)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Great)</option>
+        </select>&nbsp &nbsp
+        <input type="submit" value="Save rating and return to checklist">
+    </form>
+</div>
+<br />
+The following map shows the traffic flow surrounding <strong>@ViewData["searchString"]</strong>:
+<br />
+<div id="map" style="height:500px; width:100%;"></div>
+<script>
+    let map;
+
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: { lat: 39.0481743, lng: -84.2571779 },
+        });
+        const trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE&callback=initMap&libraries=&v=weekly"
+        defer></script>
+<br /><br />
+
+
+

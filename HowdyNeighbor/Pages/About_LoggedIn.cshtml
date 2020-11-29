@@ -1,7 +1,10 @@
 ﻿@page
-@model AboutModel
+@model About_LoggedInModel
 @{
     ViewData["Title"] = "About Us";
+}
+@{
+    Layout = "_Layout_LoggedIn";
 }
 <div class="container">
     <h2 class="text-center">@ViewData["Title"]</h2>

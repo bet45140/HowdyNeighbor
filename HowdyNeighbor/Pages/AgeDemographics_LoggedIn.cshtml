@@ -1,14 +1,17 @@
 ﻿@page
-@model HowdyNeighbor.Pages.AgeDemographicsModel
+@model HowdyNeighbor.Pages.AgeDemographics_LoggedInModel
 @{
     ViewData["Title"] = "Age Demographics";
+}
+@{
+    Layout = "_Layout_LoggedIn";
 }
 
 <h3 class="text-center">Area Age Demographics for:<br /><strong>@ViewData["searchString"]</strong></h3>
 
 <div class="text-center">
     <h5>How would you rate these findings?</h5>
-    <form method="post" asp-page-handler="SearchList">
+    <form method="post" asp-page-handler="SearchList_LoggedIn">
         <select name="ageImportance">
             <option value="0">No Rating</option>
             <option value="1">1 (Poor)</option>

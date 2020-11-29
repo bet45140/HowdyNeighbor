@@ -1,0 +1,78 @@
+﻿@page
+@model SavedChecklistModel
+@{
+    ViewData["Title"] = "Saved Checklists";
+}
+<div class="container">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4 class="text-center" style="text-decoration:underline">Home Search Checklists</h4>
+            <a asp-page="/SearchList_LoggedIn">
+                <table class="table">
+                    <caption class="text-center"><strong>3774 Merwin 10 Mile Road Amelia Ohio</strong></caption>
+                    <tr>
+                        <th>Completed</th>
+                        <th>Task</th>
+                        <th>My Ranking</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" checked />
+                        </td>
+                        <td>Local School District Information</td>
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" checked />
+                        </td>
+                        <td>Local Crime Data</td>
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" checked />
+                        </td>
+                        <td>Local Traffic Density</td>
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" checked />
+                        </td>
+                        <td>Area Age Demographics</td>
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+        <div class="col-sm-6">
+            <h4 class="text-center" style="text-decoration:underline">Move-In Checklists</h4>
+        </div>
+    </div>
+</div>

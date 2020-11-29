@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HowdyNeighbor.Pages
 {
-    public class AboutModel : PageModel
+    public class About_LoggedInModel : PageModel
     {
         public string Message { get; set; }
 

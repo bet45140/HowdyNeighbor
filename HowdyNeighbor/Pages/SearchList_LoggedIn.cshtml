@@ -9,7 +9,6 @@
 <div>
     <h3 class="text-center text-shrink">Begin your new checklist for: <strong>@ViewData["searchString"]</strong></h3>
 </div>
-<form method="post">
     <table class="table">
         <tr>
             <th>Completed</th>
@@ -25,7 +24,7 @@
                 {<input type="checkbox" checked />}
             </td>
             <td>Local School District Information</td>
-            <td><a href="SchoolDistrict">View Data</a></td>
+            <td><a href="SchoolDistrict_LoggedIn">View Data</a></td>
             <td>
                 @if (ViewData["schoolImportance"] as string == "0" || ViewData["schoolImportance"] is null)
                 {<span class="fa fa-star"></span>
@@ -73,7 +72,7 @@
                 {<input type="checkbox" checked />}
             </td>
             <td>Local Crime Data</td>
-            <td><a href="CrimeData">View Data</a></td>
+            <td><a href="CrimeData_LoggedIn">View Data</a></td>
             <td>
                 @if (ViewData["crimeImportance"] as string == "0" || ViewData["crimeImportance"] is null)
                 {<span class="fa fa-star"></span>
@@ -121,7 +120,7 @@
                 {<input type="checkbox" checked />}
             </td>
             <td>Local Traffic Density</td>
-            <td><a href="TrafficDensity">View Data</a></td>
+            <td><a href="TrafficDensity_LoggedIn">View Data</a></td>
             <td>
                 @if (ViewData["trafficImportance"] as string == "0" || ViewData["trafficImportance"] is null)
                 {<span class="fa fa-star"></span>
@@ -169,7 +168,7 @@
                 {<input type="checkbox" checked />}
             </td>
             <td>Area Age Demographics</td>
-            <td><a href="AgeDemographics">View Data</a></td>
+            <td><a href="AgeDemographics_LoggedIn">View Data</a></td>
             <td>
                 @if (ViewData["ageImportance"] as string == "0" || ViewData["ageImportance"] is null)
                 {<span class="fa fa-star"></span>
@@ -210,9 +209,8 @@
             </td>
         </tr>
     </table>
-    <button onclick="myFunction()">Save Checklist</button>
-</form>
-<br />
+    <button onclick="myFunction()" asp-page="/SearchList_LoggedIn">Save Checklist</button>
+<br /><br />
 <div>
     <iframe class="iframe-style"
             frameborder="0"
@@ -221,6 +219,7 @@
 </div>
 <script>
     function myFunction() {
-        alert("Your checklist has successfully been saved");
+        if (alert('Your checklist has successfully been saved')) { }
+        else window.location.reload();
     }
 </script>
