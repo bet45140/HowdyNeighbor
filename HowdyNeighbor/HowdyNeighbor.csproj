@@ -14,10 +14,13 @@
     <Content Update="Pages\AgeDemographics.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\IndexLoggedIn.cshtml">
+    <Content Update="Pages\Index_LoggedIn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\_LayoutLoggedIn.cshtml">
+    <Content Update="Pages\SearchList_LoggedIn.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\_Layout_LoggedIn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

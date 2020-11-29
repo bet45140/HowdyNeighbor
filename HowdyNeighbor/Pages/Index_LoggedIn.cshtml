@@ -1,10 +1,10 @@
 ﻿@page
-@model IndexLoggedInModel
+@model Index_LoggedInModel
 @{
     ViewData["Title"] = "Home";
 }
 @{
-    Layout = "_LayoutLoggedIn";
+    Layout = "_Layout_LoggedIn";
 }
 <div class="text-center">
     <h2 class="text-shrink"><strong>Moving is stressful... Let Howdy Neighbor help!</strong></h2>
@@ -14,7 +14,7 @@
     <div class="col-sm-6">
         <h3 class="text-shrink">Still Searching?</h3>
         <p>Enter an address below to start your new home search checklist</p>
-        <form method="post" asp-page-handler="SearchList">
+        <form method="post" asp-page-handler="SearchList_LoggedIn">
             <div>
                 <input type="text" class="form-control" name="searchString" placeholder="Address">
             </div><br />

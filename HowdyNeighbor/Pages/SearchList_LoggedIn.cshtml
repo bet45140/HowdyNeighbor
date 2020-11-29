@@ -1,7 +1,10 @@
 ﻿@page
-@model HowdyNeighbor.Pages.SearchListModel
+@model HowdyNeighbor.Pages.SearchList_LoggedInModel
 @{
     ViewData["Title"] = "SearchList";
+}
+@{
+    Layout = "_Layout_LoggedIn";
 }
 <div>
     <h3 class="text-center text-shrink">Begin your new checklist for: <strong>@ViewData["searchString"]</strong></h3>
@@ -207,11 +210,17 @@
             </td>
         </tr>
     </table>
+    <button onclick="myFunction()">Save Checklist</button>
 </form>
 <br />
 <div>
-<iframe class="iframe-style"
-        frameborder="0"
-        src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
-        allowfullscreen></iframe>
+    <iframe class="iframe-style"
+            frameborder="0"
+            src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
+            allowfullscreen></iframe>
 </div>
+<script>
+    function myFunction() {
+        alert("Your checklist has successfully been saved");
+    }
+</script>

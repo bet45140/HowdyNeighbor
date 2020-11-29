@@ -9,12 +9,20 @@ namespace HowdyNeighbor.Pages
 {
     public class CrimeDataModel : PageModel
     {
+        public static List<Crime> crimeList = new List<Crime>();
+
         public void OnGet()
         {
             string searchString = TempData["searchString"] as string;
             TempData.Keep();
             ViewData["searchString"] = searchString;
+
+            Crime crimeRate = new Crime("moderate", "low", "low", "very low");
+            crimeList.Add(crimeRate);
+
         }
+
+
         public IActionResult OnPostSearchList(string crimeImportance)
         {
             TempData["crimeImportance"] = crimeImportance;

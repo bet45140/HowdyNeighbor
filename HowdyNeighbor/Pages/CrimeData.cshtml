@@ -20,7 +20,22 @@
         <input type="submit" value="Save rating and return to checklist">
     </form>
 </div>
-
 <br /><br />
+<table class="table">
+    <tr>
+        <th>Theft/Burglary Rate</th>
+        <th>Assault Rate</th>
+        <th>Sex Crime Rate</th>
+        <th>Homocide Rate</th>
+    </tr>
+    <tr>
+        <td>@CrimeDataModel.crimeList[0].TheftRate</td>
+        <td>@CrimeDataModel.crimeList[0].AssaultRate</td>
+        <td>@CrimeDataModel.crimeList[0].SexCrimeRate</td>
+        <td>@CrimeDataModel.crimeList[0].HomocideRate</td>
+
+    </tr>
+</table>
+
 
 
