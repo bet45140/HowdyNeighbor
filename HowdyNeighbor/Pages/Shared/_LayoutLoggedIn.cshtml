@@ -12,8 +12,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
-
 </head>
 <body style="background-color:#ecfcfd">
     <header>
@@ -27,7 +25,10 @@
                     <a class="nav-link nav-style" href="/About"><strong>About Us</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-style" href="Login"><strong>Login</strong></a>
+                    <a class="nav-link nav-style" href="/SavedChecklists"><strong>Saved Checklists</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-style" href="/Index">Sign Out</a>
                 </li>
             </ul>
         </nav>
@@ -52,9 +53,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+   
     @RenderSection("Scripts", required: false)
 </body>
 </html>

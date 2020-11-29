@@ -1,12 +1,14 @@
 ﻿@page
-@model IndexModel
+@model IndexLoggedInModel
 @{
     ViewData["Title"] = "Home";
+}
+@{
+    Layout = "_LayoutLoggedIn";
 }
 <div class="text-center">
     <h2 class="text-shrink"><strong>Moving is stressful... Let Howdy Neighbor help!</strong></h2>
     <h3 class="text-shrink"><strong>Let's Get Started!</strong></h3>
-    <p>Login or create an account <a href="Login">here</a> to save new checklists or to view saved checklists</p>
 </div>
 <div class="row">
     <div class="col-sm-6">

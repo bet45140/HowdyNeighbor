@@ -3,6 +3,29 @@
 @{
     ViewData["Title"] = "Login";
 }
-<h2>@ViewData["Title"]</h2>
-
-<p>Log in to Howdy Neighbor with an account of your choosing (Facebook, Google, etc.) to save checklists.</p>
+  <div class="container" style="width:50%; background-color:#CADCE6; border:solid; border-color:black;"> 
+      <form>
+          <br />
+          <div class="row">
+          <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 text-center"> <a href="#" class="btn btn-primary facebook"> <span>Login with Facebook</span> <i class="fa fa-facebook"></i> </a> </div>
+          <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 text-center"> <a href="#" class="btn btn-primary google-plus"> Login with Google <i class="fa fa-google-plus"></i> </a> </div>
+          </div>
+          <br />
+              <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-primary" asp-page="/IndexLoggedIn">Submit</button>
+          <p style="padding-top:10px;">Don't have an account? Create one <a asp-page="/CreateAccount">here</a></p>
+      </form>
+ <br />
+</div>
