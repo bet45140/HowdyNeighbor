@@ -19,7 +19,7 @@
 
 <p>View a moving checklist that you have saved.</p>
 
-<form method="post" style="background-color: #FFFFF4; padding: 2%; border: 1px solid slategray;">
+<form method="post" style="background-color: #CADCE6; padding: 2%; border: 1px solid slategray;">
     <h3>Today</h3>
     <table>
         <thead>
@@ -99,6 +99,7 @@
     </table>
     <br />
     <br />
+    <strong>Add a pre-made task to your checklist below:</strong><br />
     <select id="premadeTasks" name="premadeTasks" multiple style="width: 100%; height: 180px;">
         <optgroup label="Shipping">
             <option value="Collect boxes for household items">Collect boxes for household items</option>
@@ -130,10 +131,10 @@
     </select>
     <br />
     <br />
-    <input type="text" id="customTask" name="customTask"/>
+    <strong>Add a custom task:</strong><br /><input type="text" id="customTask" name="customTask" placeholder="Enter Task"/>
     <br />
     <br />
-    <input class="form-control" type="datetime-local" id="taskDate" name="taskDate" />
+    <strong>Enter date and time for task to be completed:</strong><br />(Will default to current date and time if left blank)<br /><input class="form-control" type="datetime-local" id="taskDate" name="taskDate" />
     <br />
     <input type="submit" />
 </form>

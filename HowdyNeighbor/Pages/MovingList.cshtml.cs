@@ -34,7 +34,7 @@ namespace HowdyNeighbor.Pages
                 ChecklistTasks.Add(TaskF);
             }
         }
-        public async Task OnPostAsync()
+        public void OnPost()
         {
             string task = String.Format("{0}", Request.Form["customTask"]);
             DateTime date = DateTime.Now;
