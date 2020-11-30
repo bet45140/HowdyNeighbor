@@ -86,54 +86,54 @@
         <tbody>
             @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
             {
-            <tr>
-                @if (MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
-                {
-                    <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                    <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                    <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
-                }
-            </tr>
+                <tr>
+                    @if (MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
+                    {
+                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
+                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
+                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    }
+                </tr>
             }
         </tbody>
     </table>
     <br />
+    <br />
+    <select id="premadeTasks" name="premadeTasks" multiple style="width: 100%; height: 180px;">
+        <optgroup label="Shipping">
+            <option value="Collect boxes for household items">Collect boxes for household items</option>
+            <option value="Contact moving company">Contact moving company</option>
+        </optgroup>
+        <optgroup label="Pets">
+            <option value="Contact local veterinarian's office">Contact local veterinarian's office</option>
+            <option value="Research local laws / homeowner's association policies for pets">Research local laws / homeowner's association policies for pets</option>
+            <option value="Transfer pet medications to new veterinarian's office">Transfer pet medications to new veterinarian's office</option>
+            <option value="Look into local dog parks, pet stores, etc.">Look into local dog parks, pet stores, etc.</option>
+        </optgroup>
+        <optgroup label="Voting">
+            <option value="Update voter registration address">Update voter registration address</option>
+            <option value="Research residency requirements for voting">Research residency requirements for voting</option>
+        </optgroup>
+        <optgroup label="Health">
+            <option value="Transfer perscriptions to new pharmacy">Transfer perscriptions to new pharmacy</option>
+            <option value="Contact local doctor's office">Contact local doctor's office</option>
+            <option value="Contact local dentist's office">Contact local dentist's office</option>
+        </optgroup>
+        <optgroup label="Neighborhood">
+            <option value="Contact homeowner's association">Contact homeowner's association</option>
+            <option value="Contact neighbors">Contact neighbors</option>
+            <option value="Contact local newspaper delivery service">Contact local newspaper delivery service</option>
+        </optgroup>
+        <optgroup label="School">
+            <option value="Contact local school district">Contact local school district</option>
+        </optgroup>
+    </select>
+    <br />
+    <br />
+    <input type="text" id="customTask" name="customTask"/>
+    <br />
+    <br />
+    <input class="form-control" type="datetime-local" id="taskDate" name="taskDate" />
+    <br />
+    <input type="submit" />
 </form>
-<br />
-<select multiple style="width: 100%; height: 180px;">
-    <optgroup label="Shipping">
-        <option value="1">Collect boxes for household items</option>
-        <option value="2">Contact moving company</option>
-    </optgroup>
-    <optgroup label="Pets">
-        <option value="2">Contact local veterinarian's office</option>
-        <option value="3">Research local laws / homeowner's association policies for pets</option>
-        <option value="4">Transfer pet medications to new veterinarian's office</option>
-        <option value="5">Look into local dog parks, pet stores, etc.</option>
-    </optgroup>
-    <optgroup label="Voting">
-        <option value="6">Update voter registration address</option>
-        <option value="7">Research residency requirements for voting</option>
-    </optgroup>
-    <optgroup label="Health">
-        <option value="8">Transfer perscriptions to new pharmacy</option>
-        <option value="9">Contact local doctor's office</option>
-        <option value="10">Contact local dentist's office</option>
-    </optgroup>
-    <optgroup label="Neighborhood">
-        <option value="11">Contact homeowner's association</option>
-        <option value="12">Contact neighbors</option>
-        <option value="13">Contact local newspaper delivery service</option>
-    </optgroup>
-    <optgroup label="School">
-        <option value="14">Contact local school district</option>
-    </optgroup>
-</select>
-<br />
-<br />
-<input type="text" />
-<br />
-<br />
-<input class="form-control" type="datetime-local" />
-<br />
-<button style="text-align: center">Update</button>

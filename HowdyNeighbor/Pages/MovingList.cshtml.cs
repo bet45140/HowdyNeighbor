@@ -21,17 +21,36 @@ namespace HowdyNeighbor.Pages
             {
                 DateTime CurrentDate = DateTime.Now; // Current date
                 ChecklistTask TaskA = new ChecklistTask("Make sure that utilities are set up", "In progress", CurrentDate);
-                ChecklistTask TaskB = new ChecklistTask("Get in contact with the local school district", "In progress", CurrentDate);
+                /* ChecklistTask TaskB = new ChecklistTask("Get in contact with the local school district", "In progress", CurrentDate); */
                 ChecklistTask TaskC = new ChecklistTask("Transfer perscriptions to new pharmacy", "In progress", CurrentDate.AddDays(1));
-                ChecklistTask TaskD = new ChecklistTask("Find boxes for household items", "In progress", CurrentDate.AddDays(3));
+                /* ChecklistTask TaskD = new ChecklistTask("Find boxes for household items", "In progress", CurrentDate.AddDays(3)); */
                 ChecklistTask TaskE = new ChecklistTask("Get in contact with new neighbors", "In progress", CurrentDate.AddDays(6));
                 ChecklistTask TaskF = new ChecklistTask("Purchase parks membership", "In progress", CurrentDate.AddDays(14));
                 ChecklistTasks.Add(TaskA);
-                ChecklistTasks.Add(TaskB);
+                /* ChecklistTasks.Add(TaskB); */
                 ChecklistTasks.Add(TaskC);
-                ChecklistTasks.Add(TaskD);
+                /* ChecklistTasks.Add(TaskD); */
                 ChecklistTasks.Add(TaskE);
                 ChecklistTasks.Add(TaskF);
+            }
+        }
+        public async Task OnPostAsync()
+        {
+            string task = String.Format("{0}", Request.Form["customTask"]);
+            DateTime date = DateTime.Now;
+            if (Request.Form["taskDate"].ToString() != "")
+            {
+                date = Convert.ToDateTime(String.Format("{0}", Request.Form["taskDate"]));
+            }
+            foreach (string item in Request.Form["premadeTasks"])
+            {
+                ChecklistTask TaskX = new ChecklistTask(item, "In progress", date);
+                ChecklistTasks.Add(TaskX);
+            }
+            ChecklistTask TaskG = new ChecklistTask(task, "In progress", date);
+            if (task != "" && date != null)
+            {
+                ChecklistTasks.Add(TaskG);
             }
         }
     }
