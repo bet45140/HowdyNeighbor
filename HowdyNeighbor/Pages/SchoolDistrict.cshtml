@@ -21,19 +21,20 @@
 </div>
 
 <br /><br />
-    <table class="table">
+<form method="post" class="my-border-top table-background-color">
+    <table class="table my-border">
         <tr>
-            <th>School Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
+            <th class="my-border-none-left">School Name</th>
+            <th class="my-border">Address</th>
+            <th class="my-border-none-right">Phone Number</th>
         </tr>
         @for (var i = 0; i < SchoolDistrictModel.schoolList.Count(); i++)
         {
             <tr>
-                <td>@SchoolDistrictModel.schoolList[i].SchoolName</td>
-                <td>@SchoolDistrictModel.schoolList[i].SchoolAddress</td>
-                <td>@SchoolDistrictModel.schoolList[i].SchoolPhoneNumber</td>
+                <td class="my-border">@SchoolDistrictModel.schoolList[i].SchoolName</td>
+                <td class="my-border-none-top">@SchoolDistrictModel.schoolList[i].SchoolAddress</td>
+                <td class="my-border">@SchoolDistrictModel.schoolList[i].SchoolPhoneNumber</td>
             </tr>
         }
     </table>
-
+</form>

@@ -24,19 +24,22 @@
 </div>
 
 <br /><br />
-<table class="table">
-    <tr>
-        <th>School Name</th>
-        <th>Address</th>
-        <th>Phone Number</th>
-    </tr>
-    @for (var i = 0; i < SchoolDistrictModel.schoolList.Count(); i++)
+<form method="post" class="my-border-top table-background-color">
+    <table class="table my-border">
+        <tr>
+            <th class="my-border-none-left">School Name</th>
+            <th class="my-border">Address</th>
+            <th class="my-border-none-right">Phone Number</th>
+        </tr>
+        @for (var i = 0; i < SchoolDistrict_LoggedInModel.schoolList.Count(); i++)
         {
-    <tr>
-        <td>@SchoolDistrictModel.schoolList[i].SchoolName</td>
-        <td>@SchoolDistrictModel.schoolList[i].SchoolAddress</td>
-        <td>@SchoolDistrictModel.schoolList[i].SchoolPhoneNumber</td>
-    </tr>
+            <tr>
+                <td class="my-border">@SchoolDistrict_LoggedInModel.schoolList[i].SchoolName</td>
+                <td class="my-border-none-top">@SchoolDistrict_LoggedInModel.schoolList[i].SchoolAddress</td>
+                <td class="my-border">@SchoolDistrict_LoggedInModel.schoolList[i].SchoolPhoneNumber</td>
+            </tr>
         }
-</table>
+    </table>
+</form>
+
 

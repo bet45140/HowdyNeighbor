@@ -68,3 +68,51 @@ body{
     display: inline-block;
     margin: 0 auto;
 }
+
+.my-border {
+    border: 1px solid slategray;
+}
+
+.my-border-none-left {
+    border-top: 1px solid slategray;
+    border-bottom: 1px solid slategray;
+    border-right: 1px solid slategray;
+}
+
+.my-border-none-right {
+    border-top: 1px solid slategray;
+    border-bottom: 1px solid slategray;
+    border-left: 1px solid slategray;
+}
+
+.my-border-none-top {
+    border-bottom: 1px solid slategray;
+    border-left: 1px solid slategray;
+    border-right: 1px solid slategray;
+}
+
+.my-border-none-bottom {
+    border-top: 1px solid slategray;
+    border-left: 1px solid slategray;
+    border-right: 1px solid slategray;
+}
+
+.my-border-left {
+    border-left: 1px solid slategray;
+}
+
+.my-border-right {
+    border-right: 1px solid slategray;
+}
+
+.my-border-top {
+    border-top: 1px solid slategray;
+}
+
+.my-border-bottom {
+    border-bottom: 1px solid slategray;
+}
+
+.table-background-color {
+    background-color: #CADCE6;
+}

@@ -7,25 +7,26 @@
     Layout = "_Layout_LoggedIn";
 }
 <div>
-    <h3 class="text-center text-shrink">Begin your new checklist for: <strong>@ViewData["searchString"]</strong></h3>
+    <h3 class="text-center text-shrink">Let's begin your new checklist for: <strong>@ViewData["searchString"]</strong></h3>
 </div>
-    <table class="table">
+<form method="post" class="my-border-top table-background-color">
+    <table class="table my-border">
         <tr>
-            <th>Completed</th>
-            <th>Task</th>
-            <th>Information</th>
-            <th>My Ranking</th>
+            <th class="my-border-none-left">Completed</th>
+            <th class="my-border">Task</th>
+            <th class="my-border">Information</th>
+            <th class="my-border-none-right">My Ranking</th>
         </tr>
         <tr>
-            <td>
+            <td class="my-border-bottom my-border-right">
                 @if (ViewData["schoolImportance"] is null)
                 {<input type="checkbox" />}
                 else
                 {<input type="checkbox" checked />}
             </td>
-            <td>Local School District Information</td>
-            <td><a href="SchoolDistrict_LoggedIn">View Data</a></td>
-            <td>
+            <td class="my-border-none-top">Local School District Information</td>
+            <td class="my-border-none-top"><a href="SchoolDistrict_LoggedIn">View Data</a></td>
+            <td class="my-border-bottom my-border-left">
                 @if (ViewData["schoolImportance"] as string == "0" || ViewData["schoolImportance"] is null)
                 {<span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
@@ -65,15 +66,15 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="my-border-bottom my-border-right">
                 @if (ViewData["crimeImportance"] is null)
                 {<input type="checkbox" />}
                 else
                 {<input type="checkbox" checked />}
             </td>
-            <td>Local Crime Data</td>
-            <td><a href="CrimeData_LoggedIn">View Data</a></td>
-            <td>
+            <td class="my-border-none-top">Local Crime Data</td>
+            <td class="my-border-none-top"><a href="CrimeData_LoggedIn">View Data</a></td>
+            <td class="my-border-bottom my-border-left">
                 @if (ViewData["crimeImportance"] as string == "0" || ViewData["crimeImportance"] is null)
                 {<span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
@@ -113,15 +114,15 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="my-border-bottom my-border-right">
                 @if (ViewData["trafficImportance"] is null)
                 {<input type="checkbox" />}
                 else
                 {<input type="checkbox" checked />}
             </td>
-            <td>Local Traffic Density</td>
-            <td><a href="TrafficDensity_LoggedIn">View Data</a></td>
-            <td>
+            <td class="my-border-none-top">Local Traffic Density</td>
+            <td class="my-border-none-top"><a href="TrafficDensity_LoggedIn">View Data</a></td>
+            <td class="my-border-bottom my-border-left">
                 @if (ViewData["trafficImportance"] as string == "0" || ViewData["trafficImportance"] is null)
                 {<span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
@@ -167,8 +168,8 @@
                 else
                 {<input type="checkbox" checked />}
             </td>
-            <td>Area Age Demographics</td>
-            <td><a href="AgeDemographics_LoggedIn">View Data</a></td>
+            <td class="my-border-left my-border-right">Area Age Demographics</td>
+            <td class="my-border-left my-border-right"><a href="AgeDemographics_LoggedIn">View Data</a></td>
             <td>
                 @if (ViewData["ageImportance"] as string == "0" || ViewData["ageImportance"] is null)
                 {<span class="fa fa-star"></span>
@@ -209,6 +210,7 @@
             </td>
         </tr>
     </table>
+</form>
     <button onclick="myFunction()" asp-page="/SearchList_LoggedIn">Save Checklist</button>
 <br /><br />
 <div>

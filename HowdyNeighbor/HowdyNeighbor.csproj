@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Pages\MovingList_LoggedIn.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\SavedChecklist.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

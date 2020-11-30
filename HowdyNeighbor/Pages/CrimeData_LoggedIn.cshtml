@@ -23,21 +23,22 @@
     </form>
 </div>
 <br /><br />
-<table class="table">
-    <tr>
-        <th>Theft/Burglary Rate</th>
-        <th>Assault Rate</th>
-        <th>Sex Crime Rate</th>
-        <th>Homocide Rate</th>
-    </tr>
-    <tr>
-        <td>@CrimeDataModel.crimeList[0].TheftRate</td>
-        <td>@CrimeDataModel.crimeList[0].AssaultRate</td>
-        <td>@CrimeDataModel.crimeList[0].SexCrimeRate</td>
-        <td>@CrimeDataModel.crimeList[0].HomocideRate</td>
-
-    </tr>
-</table>
-
-
-
+<form method="post" class="my-border-top table-background-color">
+    <table class="table my-border">
+        <tr>
+            <th class="my-border-none-left">Theft/Burglary Rate</th>
+            <th class="my-border">Assault Rate</th>
+            <th class="my-border">Sex Crime Rate</th>
+            <th class="my-border-none-right">Homocide Rate</th>
+        </tr>
+        <tr>
+            @for (var i = 0; i < CrimeData_LoggedInModel.crimeList.Count(); i++)
+            {
+                <td class="my-border">@CrimeData_LoggedInModel.crimeList[i].TheftRate</td>
+                <td class="my-border-none-top">@CrimeData_LoggedInModel.crimeList[i].AssaultRate</td>
+                <td class="my-border-none-top">@CrimeData_LoggedInModel.crimeList[i].SexCrimeRate</td>
+                <td class="my-border">@CrimeData_LoggedInModel.crimeList[i].HomocideRate</td>
+            }
+        </tr>
+    </table>
+</form>

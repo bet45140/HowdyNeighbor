@@ -1,13 +1,17 @@
 ﻿@page
-@model HowdyNeighbor.Pages.MovingListModel
+@model HowdyNeighbor.Pages.MovingList_LoggedInModel
 @{
-    ViewData["Title"] = "Moving Checklist";
+    ViewData["Title"] = "My List";
+}
+@{
+    Layout = "_Layout_LoggedIn";
 }
 <style>
     table {
         border: 1px solid slategray;
         background-color: white;
     }
+
     td {
         border-top: 1px solid slategray;
         border-bottom: 1px solid slategray;
@@ -28,16 +32,16 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
+            @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
             {
-                <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now)
+            <tr>
+                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now)
                     {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
+                <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
                     }
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
@@ -46,16 +50,16 @@
     <h3>Tomorrow</h3>
     <table>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
+            @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
             {
-                <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now)
+            <tr>
+                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now)
                     {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
+                <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
                     }
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
@@ -64,16 +68,16 @@
     <h3>Later this week</h3>
     <table>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
+            @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
             {
-                <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
+            <tr>
+                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
                     {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
+                <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
                     }
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
@@ -82,16 +86,16 @@
     <h3>Later this month</h3>
     <table>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
+            @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
             {
-                <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
+            <tr>
+                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
                     {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
+                <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
                     }
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
@@ -129,10 +133,18 @@
     </select>
     <br />
     <br />
-    <strong>Add a custom task:</strong><br /><input type="text" id="customTask" name="customTask" placeholder="Enter Task"/>
+    <strong>Add a custom task:</strong><br /><input type="text" id="customTask" name="customTask" placeholder="Enter Task" />
     <br />
     <br />
     <strong>Enter date and time for task to be completed:</strong><br />(Will default to current date and time if left blank)<br /><input class="form-control" type="datetime-local" id="taskDate" name="taskDate" />
     <br />
     <input type="submit" />
+    <button onclick="myFunction()" style="float:right;" asp-page="/MovingList_LoggedIn">Save Checklist</button>
 </form>
+
+<script>
+    function myFunction() {
+        if (alert('Your checklist has successfully been saved')) { }
+        else window.location.reload();
+    }
+</script>
