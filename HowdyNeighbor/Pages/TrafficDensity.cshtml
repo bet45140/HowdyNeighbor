@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Traffic Density";
 }
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <h3 class="text-center">Traffic Data for:<br /><strong>@ViewData["searchString"]</strong></h3>
 
@@ -21,16 +22,54 @@
     </form>
 </div>
 <br />
-The following map shows the traffic flow surrounding <strong>@ViewData["searchString"]</strong>:
+The following map shows the current traffic flow surrounding <strong>@ViewData["searchString"]</strong>:
 <br />
-<div id="map" style="height:500px; width:100%;"></div>
+<div id="map"></div>
 <script>
-    let map;
+    //console.log(getLongitude())
+    //console.log(getLatitude())
+    async function getLatitude() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: searchedAddress,
+                key: 'AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE'
+            }
+        })
+            let lat = response.data.results[0].geometry.location.lat;
+        return lat;
 
-    function initMap() {
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 13,
-            center: { lat: 39.0481743, lng: -84.2571779 },
+    }
+
+        async function getLongitude() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: searchedAddress,
+                    key: 'AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE'
+                }
+            })
+            let lng = response.data.results[0].geometry.location.lng;
+            return lng;
+    }
+
+        async function initMap() {
+        let latitude = await getLatitude()
+        let longitude = await getLongitude()
+        const location = { lat: latitude, lng: longitude }
+        // Map options
+        var options = {
+            zoom: 15,
+            center: location
+        }
+
+        // Create a new map
+        const map = new google.maps.Map(document.getElementById('map'), options);
+
+        // Add a map marker
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
         });
         const trafficLayer = new google.maps.TrafficLayer();
         trafficLayer.setMap(map);
