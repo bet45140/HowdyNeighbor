@@ -37,5 +37,12 @@ namespace HowdyNeighbor.Pages
         {
             return RedirectToPage("/Index");
         }
+
+        public IActionResult OnPostTrafficDensity(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            return RedirectToPage("/TrafficDensity");
+        }
     }
 }

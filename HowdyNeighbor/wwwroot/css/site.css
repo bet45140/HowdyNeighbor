@@ -116,3 +116,8 @@ body{
 .table-background-color {
     background-color: #CADCE6;
 }
+
+#map{
+    height: 400px;
+    width: 100%;
+}
