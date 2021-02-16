@@ -1,40 +1,41 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal;
 
 namespace HowdyNeighbor.Pages
 {
     public class MovingListModel : PageModel
     {
+        public static int id = 1;
         public static List<ChecklistTask> ChecklistTasks = new List<ChecklistTask>();
-        public void OnGet()
+        public static List<int> IDs = new List<int>();
+        public IActionResult OnGet()
         {
             // TODO: Redo this code, this is just for testing purposes.
             // The real way to do this would be to have a loop that reads tasks from Firebase and adds them to the list.
             if (!ChecklistTasks.Any())
             {
                 DateTime CurrentDate = DateTime.Now; // Current date
-                ChecklistTask TaskA = new ChecklistTask("Make sure that utilities are set up", "In progress", CurrentDate);
-                /* ChecklistTask TaskB = new ChecklistTask("Get in contact with the local school district", "In progress", CurrentDate); */
-                ChecklistTask TaskC = new ChecklistTask("Transfer perscriptions to new pharmacy", "In progress", CurrentDate.AddDays(1));
-                /* ChecklistTask TaskD = new ChecklistTask("Find boxes for household items", "In progress", CurrentDate.AddDays(3)); */
-                ChecklistTask TaskE = new ChecklistTask("Get in contact with new neighbors", "In progress", CurrentDate.AddDays(6));
-                ChecklistTask TaskF = new ChecklistTask("Purchase parks membership", "In progress", CurrentDate.AddDays(14));
+                ChecklistTask TaskA = new ChecklistTask(id++, "Make sure that utilities are set up", false, CurrentDate);
+                ChecklistTask TaskC = new ChecklistTask(id++, "Transfer perscriptions to new pharmacy", false, CurrentDate.AddDays(1));
+                ChecklistTask TaskE = new ChecklistTask(id++, "Get in contact with new neighbors", false, CurrentDate.AddDays(6));
+                ChecklistTask TaskF = new ChecklistTask(id++, "Purchase parks membership", false, CurrentDate.AddDays(14));
                 ChecklistTasks.Add(TaskA);
-                /* ChecklistTasks.Add(TaskB); */
                 ChecklistTasks.Add(TaskC);
-                /* ChecklistTasks.Add(TaskD); */
                 ChecklistTasks.Add(TaskE);
                 ChecklistTasks.Add(TaskF);
             }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
             string task = String.Format("{0}", Request.Form["customTask"]);
             DateTime date = DateTime.Now;
@@ -44,14 +45,19 @@ namespace HowdyNeighbor.Pages
             }
             foreach (string item in Request.Form["premadeTasks"])
             {
-                ChecklistTask TaskX = new ChecklistTask(item, "In progress", date);
+                ChecklistTask TaskX = new ChecklistTask(1, item, false, date);
                 ChecklistTasks.Add(TaskX);
             }
-            ChecklistTask TaskG = new ChecklistTask(task, "In progress", date);
+            ChecklistTask TaskG = new ChecklistTask(1, task, false, date);
             if (task != "" && date != null)
             {
                 ChecklistTasks.Add(TaskG);
             }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }    
+            return Page();
         }
     }
 }

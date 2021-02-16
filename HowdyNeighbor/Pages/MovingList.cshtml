@@ -7,15 +7,21 @@
     table {
         border: 1px solid slategray;
         background-color: white;
+        table-layout: auto;
+    }
+    tr {
+        width: 960px;
     }
     td {
         border-top: 1px solid slategray;
         border-bottom: 1px solid slategray;
-        width: 360px;
+        width: 240px;
     }
 </style>
 
-<p>View a moving checklist that you have saved.</p>
+<h2>@ViewData["Title"]</h2>
+
+<p>View a moving checklist that you have saved. Select pre-defined tasks from the list, or add custom tasks.</p>
 
 <form method="post" style="background-color: #CADCE6; padding: 2%; border: 1px solid slategray;">
     <h3>Today</h3>
@@ -25,19 +31,30 @@
                 <th>Action</th>
                 <th>Status</th>
                 <th>Date</th>
+                <th>Completed?</th>
+                <th>Remove from List</th>
             </tr>
         </thead>
         <tbody>
             @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
             {
-                <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now)
+            <tr>
+                @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now && !MovingListModel.IDs.Contains(MovingListModel.ChecklistTasks[i].Id))
+                {
+                    <td>@MovingListModel.ChecklistTasks[i].Action</td>
+                    if (@MovingListModel.ChecklistTasks[i].IsComplete)
                     {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                        <td>Complete</td>
                     }
-                </tr>
+                    else
+                    {
+                        <td>Incomplete</td>
+                    }
+                    <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    <td><input type="checkbox" /></td>
+                    <td><button>Remove</button></td>
+                }
+            </tr>
             }
         </tbody>
     </table>
@@ -48,14 +65,23 @@
         <tbody>
             @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
             {
-                <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now)
+            <tr>
+                @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now)
+                {
+                    <td>@MovingListModel.ChecklistTasks[i].Action</td>
+                    if (@MovingListModel.ChecklistTasks[i].IsComplete)
                     {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                        <td>Complete</td>
                     }
-                </tr>
+                    else
+                    {
+                        <td>Incomplete</td>
+                    }
+                    <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    <td><input type="checkbox" /></td>
+                    <td><button>Remove</button></td>
+                }
+            </tr>
             }
         </tbody>
     </table>
@@ -66,14 +92,23 @@
         <tbody>
             @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
             {
-                <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
+            <tr>
+                @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
+                {
+                    <td>@MovingListModel.ChecklistTasks[i].Action</td>
+                    if (@MovingListModel.ChecklistTasks[i].IsComplete)
                     {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                        <td>Complete</td>
                     }
-                </tr>
+                    else
+                    {
+                        <td>Incomplete</td>
+                    }
+                    <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    <td><input type="checkbox" /></td>
+                    <td><button>Remove</button></td>
+                }
+            </tr>
             }
         </tbody>
     </table>
@@ -88,13 +123,25 @@
                     @if (MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
                     {
                         <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        <td>(@MovingListModel.ChecklistTasks[i].Status)</td>
+                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
+                        {
+                            <td>Complete</td>
+                        }
+                        else
+                        {
+                            <td>Incomplete</td>
+                        }
                         <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                        <td><input type="checkbox" /></td>
+                        <td><button>Remove</button></td>
                     }
                 </tr>
             }
         </tbody>
     </table>
+    <br />
+
+    <h3>Later this year</h3>
     <br />
     <br />
     <strong>Add a pre-made task to your checklist below:</strong><br />
@@ -129,7 +176,7 @@
     </select>
     <br />
     <br />
-    <strong>Add a custom task:</strong><br /><input type="text" id="customTask" name="customTask" placeholder="Enter Task"/>
+    <strong>Add a custom task:</strong><br /><input type="text" id="customTask" name="customTask" placeholder="Enter Task" />
     <br />
     <br />
     <strong>Enter date and time for task to be completed:</strong><br />(Will default to current date and time if left blank)<br /><input class="form-control" type="datetime-local" id="taskDate" name="taskDate" />

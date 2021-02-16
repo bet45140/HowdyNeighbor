@@ -110,14 +110,21 @@
                         <tbody>
                             @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
                             {
-                                <tr>
-                                    @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now)
+                            <tr>
+                                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now)
+                                {
+                                    <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                                    if (@MovingList_LoggedInModel.ChecklistTasks[i].IsComplete)
                                     {
-                                        <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
-                                        <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
-                                        <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                        <td>Incomplete</td>
                                     }
-                                </tr>
+                                    else
+                                    {
+                                        <td>Complete</td>
+                                    }
+                                    <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                }
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -128,14 +135,21 @@
                         <tbody>
                             @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
                             {
-                                <tr>
-                                    @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now)
+                            <tr>
+                                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now)
+                                {
+                                    <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                                    if (@MovingList_LoggedInModel.ChecklistTasks[i].IsComplete)
                                     {
-                                        <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
-                                        <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
-                                        <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                        <td>Incomplete</td>
                                     }
-                                </tr>
+                                    else
+                                    {
+                                        <td>Complete</td>
+                                    }
+                                    <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                }
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -146,14 +160,21 @@
                         <tbody>
                             @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
                             {
-                                <tr>
-                                    @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
+                            <tr>
+                                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
+                                {
+                                    <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                                    if (@MovingList_LoggedInModel.ChecklistTasks[i].IsComplete)
                                     {
-                                        <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
-                                        <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
-                                        <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                        <td>Incomplete</td>
                                     }
-                                </tr>
+                                    else
+                                    {
+                                        <td>Complete</td>
+                                    }
+                                    <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                }
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -164,14 +185,21 @@
                         <tbody>
                             @for (var i = 0; i < MovingList_LoggedInModel.ChecklistTasks.Count(); i++)
                             {
-                                <tr>
-                                    @if (MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
+                            <tr>
+                                @if (MovingList_LoggedInModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
+                                {
+                                    <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
+                                    if (@MovingList_LoggedInModel.ChecklistTasks[i].IsComplete)
                                     {
-                                        <td>@MovingList_LoggedInModel.ChecklistTasks[i].Action</td>
-                                        <td>(@MovingList_LoggedInModel.ChecklistTasks[i].Status)</td>
-                                        <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                        <td>Incomplete</td>
                                     }
-                                </tr>
+                                    else
+                                    {
+                                        <td>Complete</td>
+                                    }
+                                    <td><span style="color: lightslategray"><i>@MovingList_LoggedInModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                                }
+                            </tr>
                             }
                         </tbody>
                     </table>
