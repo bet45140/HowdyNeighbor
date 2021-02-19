@@ -9,16 +9,25 @@ namespace HowdyNeighbor.Pages
 {
     public class TrafficDensityModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
             string searchString = TempData["searchString"] as string;
             TempData.Keep();
             ViewData["searchString"] = searchString;
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
         public IActionResult OnPostSearchList(string trafficImportance)
         {
             TempData["trafficImportance"] = trafficImportance;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/SearchList");
         }
     }

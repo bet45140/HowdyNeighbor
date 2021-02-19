@@ -9,10 +9,14 @@ namespace HowdyNeighbor.Pages
     public class ContactModel : PageModel
     {
         public string Message { get; set; }
-
-        public void OnGet()
+        public IActionResult OnGet()
         {
             Message = "Your contact page.";
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
     }
 }

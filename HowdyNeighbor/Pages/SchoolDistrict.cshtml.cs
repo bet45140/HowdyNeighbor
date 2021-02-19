@@ -10,7 +10,7 @@ namespace HowdyNeighbor.Pages
     public class SchoolDistrictModel : PageModel
     {
         public static List<School> schoolList = new List<School>();
-        public void OnGet()
+        public IActionResult OnGet()
         {
             string searchString = TempData["searchString"] as string;
             TempData.Keep();
@@ -23,12 +23,23 @@ namespace HowdyNeighbor.Pages
             schoolList.Add(elementarySchool);
             schoolList.Add(gradeSchool);
             schoolList.Add(highSchool);
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
 
         public IActionResult OnPostSearchList(string schoolImportance)
         {
             TempData["schoolImportance"] = schoolImportance;
             TempData.Keep();
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/SearchList");
         }
     }

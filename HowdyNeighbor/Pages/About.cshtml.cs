@@ -9,10 +9,13 @@ namespace HowdyNeighbor.Pages
     public class AboutModel : PageModel
     {
         public string Message { get; set; }
-
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
     }
 }

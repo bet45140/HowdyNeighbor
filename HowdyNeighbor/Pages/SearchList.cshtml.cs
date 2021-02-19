@@ -10,7 +10,7 @@ namespace HowdyNeighbor.Pages
 {
     public class SearchListModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
             string searchString = TempData["searchString"] as string;
             TempData.Keep();
@@ -31,10 +31,20 @@ namespace HowdyNeighbor.Pages
             string ageImportance = TempData["ageImportance"] as string;
             TempData.Keep();
             ViewData["ageImportance"] = ageImportance;
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
 
         public IActionResult OnPostSaveChecklistAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/Index");
         }
 
@@ -42,6 +52,10 @@ namespace HowdyNeighbor.Pages
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/TrafficDensity");
         }
     }
