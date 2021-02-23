@@ -15,8 +15,7 @@ namespace HowdyNeighbor.Pages.UnitTests
         {
             var pageModel = new SearchListModel();
             pageModel.ModelState.AddModelError("Error", "Bad request: OnPostSaveChecklistAsync method failed in SearchList.cshtml.cs.");
-            string testString = "test";
-            var result = pageModel.OnPostSaveChecklistAsync(testString);
+            var result = pageModel.OnPostSaveChecklistAsync();
             Assert.IsType<BadRequestResult>(result);
         }
 
@@ -24,8 +23,7 @@ namespace HowdyNeighbor.Pages.UnitTests
         public void OnPostSaveChecklistAsync_IfValidModel_ReturnPage()
         {
             var pageModel = new SearchListModel();
-            string testString = "test";
-            var result = pageModel.OnPostSaveChecklistAsync(testString);
+            var result = pageModel.OnPostSaveChecklistAsync();
             Assert.IsType<PageResult>(result);
         }
 
