@@ -3,38 +3,98 @@
 @{
     ViewData["Title"] = "School District";
 }
-<h3 class="text-center">Local School District Information for:<br /><strong>@ViewData["searchString"]</strong></h3>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<div class="text-center">
-    <h5>How would you rate these findings?</h5>
-    <form method="post" asp-page-handler="SearchList">
-        <select name="schoolImportance">
-            <option value="0">No Rating</option>
-            <option value="1">1 (Poor)</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5 (Great)</option>
-        </select>&nbsp &nbsp
-        <input type="submit" value="Save rating and return to checklist">
-    </form>
-</div>
+<body>
+    <h3 class="text-center">Local School District Information for:<br /><strong>@ViewData["searchString"]</strong></h3>
+    <div class="text-center">
+        <h5>How would you rate these findings?</h5>
+        <form method="post" asp-page-handler="SearchList">
+            <select name="schoolImportance">
+                <option value="0">No Rating</option>
+                <option value="1">1 (Poor)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Great)</option>
+            </select>&nbsp &nbsp
+            <input type="submit" value="Save rating and return to checklist">
+        </form>
+    </div>
 
-<br /><br />
-<form method="post" class="my-border-top table-background-color">
-    <table class="table my-border">
-        <tr>
-            <th class="my-border-none-left">School Name</th>
-            <th class="my-border">Address</th>
-            <th class="my-border-none-right">Phone Number</th>
-        </tr>
-        @for (var i = 0; i < SchoolDistrictModel.schoolList.Count(); i++)
-        {
+    <br /><br />
+    <form method="post" class="my-border-top table-background-color">
+        <table class="table my-border">
             <tr>
-                <td class="my-border">@SchoolDistrictModel.schoolList[i].SchoolName</td>
-                <td class="my-border-none-top">@SchoolDistrictModel.schoolList[i].SchoolAddress</td>
-                <td class="my-border">@SchoolDistrictModel.schoolList[i].SchoolPhoneNumber</td>
+                <th class="my-border-none-left">School Name</th>
+                <th class="my-border">Lowest Grade Offered</th>
+                <th class="my-border-none-right">Highest Grade Offered</th>
             </tr>
-        }
-    </table>
-</form>
+
+            <tr>
+                <td class="my-border"><span id="name"></span></td>
+                <td class="my-border-none-top"><span id="gradeLow"></span></td>
+                <td class="my-border"><span id="gradeHigh"></span></td>
+            </tr>
+
+        </table>
+    </form>
+</body>
+<script>
+    async function getSchoolDistrictName() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+            params: {
+                q: searchedAddress,
+                fields: "school",
+                api_key: 'ff72568988944d667192024f60d93761910469d'
+            }
+        })
+        let schoolDistrictName = await response.data.results[0].fields.school_districts.unified.name;
+        return schoolDistrictName;
+    }
+
+    async function displayName() {
+        document.getElementById("name").innerHTML = await getSchoolDistrictName();
+    }
+
+        async function getSchoolGradeLow() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+            params: {
+                q: searchedAddress,
+                fields: "school",
+                api_key: 'ff72568988944d667192024f60d93761910469d'
+            }
+        })
+        let schoolGradeLow = await response.data.results[0].fields.school_districts.unified.grade_low;
+        return schoolGradeLow;
+    }
+
+        async function displayGradeLow() {
+        document.getElementById("gradeLow").innerHTML = await getSchoolGradeLow();
+    }
+
+        async function getSchoolGradeHigh() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+            params: {
+                q: searchedAddress,
+                fields: "school",
+                api_key: 'ff72568988944d667192024f60d93761910469d'
+            }
+        })
+        let schoolGradeHigh = await response.data.results[0].fields.school_districts.unified.grade_high;
+        return schoolGradeHigh;
+    }
+
+        async function displayGradeHigh() {
+        document.getElementById("gradeHigh").innerHTML = await getSchoolGradeHigh();
+    }
+        
+    
+    displayName(); 
+    displayGradeLow();
+    displayGradeHigh();
+    getAgeDemographics();
+</script>

@@ -45,8 +45,14 @@ namespace HowdyNeighbor.Pages
             return RedirectToPage("/TrafficDensity");
         }
 
-
         public IActionResult OnPostAgeDemographics(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            return RedirectToPage("/AgeDemographics");
+        }
+
+        public IActionResult OnPostSchoolDistrict(string searchString)
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
