@@ -36,9 +36,12 @@
                 <td class="my-border-none-top"><span id="gradeLow"></span></td>
                 <td class="my-border"><span id="gradeHigh"></span></td>
             </tr>
-
         </table>
     </form>
+    <p>
+        <h4>View detailed information about the schools located near or within this district
+        <a target="_blank" id="url">here</a></h4>
+    </p>
 </body>
 <script>
     async function getSchoolDistrictName() {
@@ -92,9 +95,41 @@
         document.getElementById("gradeHigh").innerHTML = await getSchoolGradeHigh();
     }
         
-    
+        async function getLatitude() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: searchedAddress,
+                key: 'AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE'
+            }
+        })
+            let lat = response.data.results[0].geometry.location.lat;
+        return lat;
+
+    }
+
+    async function setSchoolDistrictWebsiteUrl() {
+            const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            var latitude = await getLatitude();
+            var longitude = await getLongitude();
+            var url = "https://www.greatschools.org/search/search.page?lat=" + latitude + "&locationLabel=" +
+            searchedAddress + "&locationType=street_address&lon=" + longitude + "&st=public_charter&st=public&st=charter";
+        document.getElementById("url").setAttribute("href", url);
+    };
+
+        async function getLongitude() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: searchedAddress,
+                    key: 'AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE'
+                }
+            })
+            let lng = response.data.results[0].geometry.location.lng;
+            return lng;
+    }
     displayName(); 
     displayGradeLow();
     displayGradeHigh();
-    getAgeDemographics();
+    setSchoolDistrictWebsiteUrl();
 </script>
