@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Home";
 }
+
 <div class="text-center">
     <h2 class="text-shrink"><strong>Moving is stressful... Let Howdy Neighbor help!</strong></h2>
     <h3 class="text-shrink"><strong>Let's Get Started!</strong></h3>
@@ -15,9 +16,9 @@
         <p>Enter an address below to start your new home search checklist</p>
         <form method="post" asp-page-handler="SearchList">
             <div>
-                <input type="text" class="form-control" name="searchString" placeholder="Enter Address">
+                <input type="text" class="form-control" name="searchString" placeholder="Enter Address" id="autocomplete" onkeyup="manageInput(this)">
             </div><br />
-            <input type="submit" value="Search" />
+            <input type="submit" value="Search" id="submitButton" disabled/>
         </form>
         <br />
     </div>
@@ -27,3 +28,25 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    function manageInput(autocomplete) {
+        var button = document.getElementById('submitButton');
+        if (autocomplete != '') {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        } 
+    }
+
+    let autocomplete;
+    function initAutocomplete() {
+    new google.maps.places.Autocomplete(
+        document.getElementById("autocomplete"),
+        {
+            types: ['address'],
+            componentRestrictions: { 'country': ['US'] },
+            fields: ['place_id', 'geometry', 'name']
+        });
+  }
+</script>
+<script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE&libraries=places&callback=initAutocomplete" async defer></script>
