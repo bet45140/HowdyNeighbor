@@ -20,12 +20,12 @@ namespace HowdyNeighbor.Pages
             if (!ChecklistTasks.Any())
             {
                 DateTime CurrentDate = DateTime.Now; // Current date
-                ChecklistTask TaskA = new ChecklistTask("Make sure that utilities are set up", "In progress", CurrentDate);
+                ChecklistTask TaskA = new ChecklistTask(1, "Make sure that utilities are set up", false, CurrentDate);
                 /* ChecklistTask TaskB = new ChecklistTask("Get in contact with the local school district", "In progress", CurrentDate); */
-                ChecklistTask TaskC = new ChecklistTask("Transfer perscriptions to new pharmacy", "In progress", CurrentDate.AddDays(1));
+                ChecklistTask TaskC = new ChecklistTask(1, "Transfer perscriptions to new pharmacy", false, CurrentDate.AddDays(1));
                 /* ChecklistTask TaskD = new ChecklistTask("Find boxes for household items", "In progress", CurrentDate.AddDays(3)); */
-                ChecklistTask TaskE = new ChecklistTask("Get in contact with new neighbors", "In progress", CurrentDate.AddDays(6));
-                ChecklistTask TaskF = new ChecklistTask("Purchase parks membership", "In progress", CurrentDate.AddDays(14));
+                ChecklistTask TaskE = new ChecklistTask(1, "Get in contact with new neighbors", false, CurrentDate.AddDays(6));
+                ChecklistTask TaskF = new ChecklistTask(1, "Purchase parks membership", false, CurrentDate.AddDays(14));
                 ChecklistTasks.Add(TaskA);
                 /* ChecklistTasks.Add(TaskB); */
                 ChecklistTasks.Add(TaskC);
@@ -44,10 +44,12 @@ namespace HowdyNeighbor.Pages
             }
             foreach (string item in Request.Form["premadeTasks"])
             {
-                ChecklistTask TaskX = new ChecklistTask(item, "In progress", date);
+                // ID is 1 - this is a placeholder until the hashing system is re-added
+                ChecklistTask TaskX = new ChecklistTask(1, item, false, date);
                 ChecklistTasks.Add(TaskX);
             }
-            ChecklistTask TaskG = new ChecklistTask(task, "In progress", date);
+            // ID is 1 - this is a placeholder until the hashing system is re-added
+            ChecklistTask TaskG = new ChecklistTask(1, task, false, date);
             if (task != "" && date != null)
             {
                 ChecklistTasks.Add(TaskG);

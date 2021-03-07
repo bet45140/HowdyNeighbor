@@ -10,17 +10,24 @@ namespace HowdyNeighbor.Pages
     public class IndexModel : PageModel
     {
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
         public IActionResult OnPostSearchList(string searchString)
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/SearchList");
         }
     }
-
 }
     

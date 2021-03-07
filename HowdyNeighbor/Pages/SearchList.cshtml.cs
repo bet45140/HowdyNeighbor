@@ -10,7 +10,7 @@ namespace HowdyNeighbor.Pages
 {
     public class SearchListModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
             string searchString = TempData["searchString"] as string;
             TempData.Keep();
@@ -39,10 +39,20 @@ namespace HowdyNeighbor.Pages
             string costOfLivingImportance = TempData["costOfLivingImportance"] as string;
             TempData.Keep();
             ViewData["costOfLivingImportance"] = costOfLivingImportance;
+            
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
 
         public IActionResult OnPostSaveChecklistAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/Index");
         }
 
@@ -50,6 +60,10 @@ namespace HowdyNeighbor.Pages
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/TrafficDensity");
         }
 
@@ -57,6 +71,10 @@ namespace HowdyNeighbor.Pages
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/AgeDemographics");
         }
 
@@ -64,6 +82,10 @@ namespace HowdyNeighbor.Pages
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/SchoolDistrict");
         }
 
@@ -71,6 +93,10 @@ namespace HowdyNeighbor.Pages
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/PointsOfInterest");
         }
 
@@ -78,6 +104,10 @@ namespace HowdyNeighbor.Pages
         {
             TempData["searchString"] = searchString;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/CostOfLiving");
         }
     }

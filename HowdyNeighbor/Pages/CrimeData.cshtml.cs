@@ -11,7 +11,7 @@ namespace HowdyNeighbor.Pages
     {
         public static List<Crime> crimeList = new List<Crime>();
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             string searchString = TempData["searchString"] as string;
             TempData.Keep();
@@ -19,7 +19,11 @@ namespace HowdyNeighbor.Pages
 
             Crime crimeRate = new Crime("moderate", "low", "low", "very low");
             crimeList.Add(crimeRate);
-
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return Page();
         }
 
 
@@ -27,6 +31,10 @@ namespace HowdyNeighbor.Pages
         {
             TempData["crimeImportance"] = crimeImportance;
             TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             return RedirectToPage("/SearchList");
         }
     }
