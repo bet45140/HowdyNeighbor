@@ -16,7 +16,7 @@
         <p>Enter an address below to start your new home search checklist</p>
         <form method="post" asp-page-handler="SearchList">
             <div>
-                <input type="text" class="form-control" name="searchString" placeholder="Enter Address" id="autocomplete" onkeyup="manageInput(this)">
+                <input type="text" class="form-control" name="searchString" placeholder="Enter Address" id="autocomplete" onkeyup="buttonEnabler(this)">
             </div><br />
             <input type="submit" value="Search" id="submitButton" disabled/>
         </form>
@@ -29,7 +29,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    function manageInput(autocomplete) {
+    function buttonEnabler(autocomplete) {
         var button = document.getElementById('submitButton');
         if (autocomplete != '') {
             button.disabled = false;

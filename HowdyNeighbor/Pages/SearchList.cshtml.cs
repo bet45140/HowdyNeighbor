@@ -31,6 +31,14 @@ namespace HowdyNeighbor.Pages
             string ageImportance = TempData["ageImportance"] as string;
             TempData.Keep();
             ViewData["ageImportance"] = ageImportance;
+
+            string pointsOfInterestImportance = TempData["pointsOfInterestImportance"] as string;
+            TempData.Keep();
+            ViewData["pointsOfInterestImportance"] = pointsOfInterestImportance;
+
+            string costOfLivingImportance = TempData["costOfLivingImportance"] as string;
+            TempData.Keep();
+            ViewData["costOfLivingImportance"] = costOfLivingImportance;
         }
 
         public IActionResult OnPostSaveChecklistAsync()
@@ -57,6 +65,20 @@ namespace HowdyNeighbor.Pages
             TempData["searchString"] = searchString;
             TempData.Keep();
             return RedirectToPage("/SchoolDistrict");
+        }
+
+        public IActionResult OnPostPointsOfInterest(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            return RedirectToPage("/PointsOfInterest");
+        }
+
+        public IActionResult OnPostCostOfLiving(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            return RedirectToPage("/CostOfLiving");
         }
     }
 }

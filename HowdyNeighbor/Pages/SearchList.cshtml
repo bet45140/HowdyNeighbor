@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "SearchList";
 }
-<div>
+<div style="padding-bottom: 4rem;">
     <h3 class="text-center text-shrink">Let's begin your new checklist for: <strong>@ViewData["searchString"]</strong></h3>
 </div>
 <form method="post" class="my-border-top table-background-color">
     <table class="table my-border">
         <tr>
             <th class="my-border-none-left">Completed</th>
-            <th class="my-border">Task</th>
+            <th class="my-border">Moving Factor</th>
             <th class="my-border">Information</th>
             <th class="my-border-none-right">My Ranking</th>
         </tr>
@@ -159,15 +159,15 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="my-border-bottom my-border-right">
                 @if (ViewData["ageImportance"] is null)
                 {<input type="checkbox" />}
                 else
                 {<input type="checkbox" checked />}
             </td>
-            <td class="my-border-left my-border-right">Area Age Demographics</td>
-            <td class="my-border-left my-border-right"><a href="AgeDemographics">View Data</a></td>
-            <td>
+            <td class="my-border-none-top">Area Age Demographics</td>
+            <td class="my-border-none-top"><a href="AgeDemographics">View Data</a></td>
+            <td class="my-border-bottom my-border-left">
                 @if (ViewData["ageImportance"] as string == "0" || ViewData["ageImportance"] is null)
                 {<span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
@@ -206,12 +206,102 @@
                     <span class="fa fa-star checked"></span>}
             </td>
         </tr>
+        <tr>
+            <td class="my-border-bottom my-border-right">
+                @if (ViewData["pointsOfInterestImportance"] is null)
+                {<input type="checkbox" />}
+                else
+                {<input type="checkbox" checked />}
+            </td>
+            <td class="my-border-none-top">Nearby Points of Interest</td>
+            <td class="my-border-none-top"><a href="PointsOfInterest">View Map</a></td>
+            <td class="my-border-bottom my-border-left">
+                @if (ViewData["pointsOfInterestImportance"] as string == "0" || ViewData["pointsOfInterestImportance"] is null)
+                {<span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["pointsOfInterestImportance"] as string == "1")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["pointsOfInterestImportance"] as string == "2")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["pointsOfInterestImportance"] as string == "3")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["pointsOfInterestImportance"] as string == "4")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["pointsOfInterestImportance"] as string == "5")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @if (ViewData["costOfLivingImportance"] is null)
+                {<input type="checkbox" />}
+                else
+                {<input type="checkbox" checked />}
+            </td>
+            <td class="my-border-left my-border-right">Cost of Living</td>
+            <td class="my-border-left my-border-right"><a href="CostOfLiving">View Data</a></td>
+            <td class="my-border-left">
+                @if (ViewData["costOfLivingImportance"] as string == "0" || ViewData["costOfLivingImportance"] is null)
+                {<span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["costOfLivingImportance"] as string == "1")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["costOfLivingImportance"] as string == "2")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["costOfLivingImportance"] as string == "3")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["costOfLivingImportance"] as string == "4")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["costOfLivingImportance"] as string == "5")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>}
+            </td>
+        </tr>
     </table>
 </form>
 <br />
-<div>
-<iframe class="iframe-style"
-        frameborder="0"
-        src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
-        allowfullscreen></iframe>
-</div>
