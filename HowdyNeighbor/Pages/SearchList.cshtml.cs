@@ -32,6 +32,14 @@ namespace HowdyNeighbor.Pages
             TempData.Keep();
             ViewData["ageImportance"] = ageImportance;
 
+            string pointsOfInterestImportance = TempData["pointsOfInterestImportance"] as string;
+            TempData.Keep();
+            ViewData["pointsOfInterestImportance"] = pointsOfInterestImportance;
+
+            string costOfLivingImportance = TempData["costOfLivingImportance"] as string;
+            TempData.Keep();
+            ViewData["costOfLivingImportance"] = costOfLivingImportance;
+            
             if(!ModelState.IsValid)
             {
                 return BadRequest();
@@ -57,6 +65,50 @@ namespace HowdyNeighbor.Pages
                 return BadRequest();
             }
             return RedirectToPage("/TrafficDensity");
+        }
+
+        public IActionResult OnPostAgeDemographics(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return RedirectToPage("/AgeDemographics");
+        }
+
+        public IActionResult OnPostSchoolDistrict(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return RedirectToPage("/SchoolDistrict");
+        }
+
+        public IActionResult OnPostPointsOfInterest(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return RedirectToPage("/PointsOfInterest");
+        }
+
+        public IActionResult OnPostCostOfLiving(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return RedirectToPage("/CostOfLiving");
         }
     }
 }

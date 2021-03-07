@@ -1,0 +1,31 @@
+﻿@page
+@model HowdyNeighbor.Pages.PointsOfInterestModel
+@{
+    ViewData["Title"] = "PointsOfInterest";
+    // Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">Nearby Points of Interest Map for:<br /><strong>@ViewData["searchString"]</strong></h3>
+
+<div class="text-center">
+    <h5>How would you rate these findings?</h5>
+    <form method="post" asp-page-handler="SearchList">
+        <select name="pointsOfInterestImportance">
+            <option value="0">No Rating</option>
+            <option value="1">1 (Poor)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Great)</option>
+        </select>&nbsp &nbsp
+        <input type="submit" value="Save rating and return to checklist">
+    </form>
+</div>
+<br />
+The following map shows the surrounding area and many points of interest<strong>@ViewData["searchString"]</strong>:
+<br />
+<iframe class="iframe-style"
+        frameborder="0"
+        src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
+        allowfullscreen></iframe>
+

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Age Demographics";
 }
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <h3 class="text-center">Area Age Demographics for:<br /><strong>@ViewData["searchString"]</strong></h3>
 
@@ -19,37 +20,342 @@
         </select>&nbsp &nbsp
         <input type="submit" value="Save rating and return to checklist">
     </form>
-</div><br /><div class="text-center">
-    <p>The average age for this area: 35 years old</p><br />
-    <div id="pieChart"></div>
-</div>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</div><br />
+Average age: <div id="averageAge"></div>
+      <div class="row">
+          
+          <div class="col-sm-6" id="malePieChart"></div>
 
-<script type="text/javascript">
+
+          <div class="col-sm-6"id="femalePieChart"></div>
+      </div>
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+          <script type="text/javascript">
+
+        async function getMalesUnderTen() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let underFive = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: Under 5 years"].value;
+            let fiveToTen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 5 to 9 years"].value;
+
+            let underTen = underFive + fiveToTen;
+            return underTen;
+    }
+
+        async function getMalesTenThroughSeventeen() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let tenToFourteen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 10 to 14 years"].value;
+            let fourteenToSeventeen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 15 to 17 years"].value;
+
+            let tenToSeventeen = tenToFourteen + fourteenToSeventeen;
+            return tenToSeventeen;
+    }
+
+        async function getMalesEighteenToTwentyFour() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let eighteenToNineteen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 18 and 19 years"].value;
+            let twenty = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 20 years"].value;
+            let twentyOne = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 21 years"].value;
+            let twentyTwoToTwentyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 22 to 24 years"].value;
+
+            let eighteenToTwentyFour = eighteenToNineteen + twenty + twentyOne + twentyTwoToTwentyFour;
+            return eighteenToTwentyFour;
+    }
+
+        async function getMalesTwentyFiveToThirtyFour() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let twentyFiveToTwentyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 25 to 29 years"].value;
+            let thirtyToThirtyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 30 to 34 years"].value;
+
+            let twentyFiveToThirtyFour = twentyFiveToTwentyNine + thirtyToThirtyFour;
+            return twentyFiveToThirtyFour;
+    }
+
+        async function getMalesThirtyFiveToFourtyNine() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let thirtyFiveToThirtyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 35 to 39 years"].value;
+            let fourtyToFourtyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 40 to 44 years"].value;
+            let fourtyFiveToFourtyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 45 to 49 years"].value;
+
+            let thirtyFiveToFourtyNine = thirtyFiveToThirtyNine + fourtyToFourtyFour + fourtyFiveToFourtyNine;
+            return thirtyFiveToFourtyNine;
+    }
+
+        async function getMalesFiftyToSixtyNine() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let fiftyToFiftyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 50 to 54 years"].value;
+            let fiftyFiveToFiftyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 55 to 59 years"].value;
+            let sixtyToSixtyOne= await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 60 and 61 years"].value;
+            let sixtyTwoToSixtyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 62 to 64 years"].value;
+            let sixtyFiveToSixtySix = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 65 and 66 years"].value;
+            let sixtySevenToSixtyNine= await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 67 to 69 years"].value;
+
+            let fiftyToSixtyNine = fiftyToFiftyFour + fiftyFiveToFiftyNine + sixtyToSixtyOne + sixtyTwoToSixtyFour + sixtyFiveToSixtySix + sixtySevenToSixtyNine;
+            return fiftyToSixtyNine;
+    }
+
+        async function getMalesSixyNineAndOver() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let seventyToSeventyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 70 to 74 years"].value;
+            let seventyFiveToSeventyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 75 to 79 years"].value;
+            let eightyToEightyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 80 to 84 years"].value;
+            let eightyFiveAndOver = await response.data.results[0].fields.acs.demographics["Population by age range"]["Male: 85 years and over"].value;
+
+            let sixtyNineAndOver = seventyToSeventyFour + seventyFiveToSeventyNine + eightyToEightyFour + eightyFiveAndOver;
+            return sixtyNineAndOver;
+    }
+
+        async function getFemalesUnderTen() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let underFive = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: Under 5 years"].value;
+            let fiveToTen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 5 to 9 years"].value;
+
+            let underTen = underFive + fiveToTen;
+            return underTen;
+    }
+
+        async function getFemalesTenThroughSeventeen() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let tenToFourteen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 10 to 14 years"].value;
+            let fourteenToSeventeen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 15 to 17 years"].value;
+
+            let tenToSeventeen = tenToFourteen + fourteenToSeventeen;
+            return tenToSeventeen;
+    }
+
+        async function getFemalesEighteenToTwentyFour() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let eighteenToNineteen = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 18 and 19 years"].value;
+            let twenty = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 20 years"].value;
+            let twentyOne = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 21 years"].value;
+            let twentyTwoToTwentyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 22 to 24 years"].value;
+
+            let eighteenToTwentyFour = eighteenToNineteen + twenty + twentyOne + twentyTwoToTwentyFour;
+            return eighteenToTwentyFour;
+    }
+
+        async function getFemalesTwentyFiveToThirtyFour() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let twentyFiveToTwentyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 25 to 29 years"].value;
+            let thirtyToThirtyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 30 to 34 years"].value;
+
+            let twentyFiveToThirtyFour = twentyFiveToTwentyNine + thirtyToThirtyFour;
+            return twentyFiveToThirtyFour;
+    }
+
+        async function getFemalesThirtyFiveToFourtyNine() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let thirtyFiveToThirtyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 35 to 39 years"].value;
+            let fourtyToFourtyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 40 to 44 years"].value;
+            let fourtyFiveToFourtyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 45 to 49 years"].value;
+
+            let thirtyFiveToFourtyNine = thirtyFiveToThirtyNine + fourtyToFourtyFour + fourtyFiveToFourtyNine;
+            return thirtyFiveToFourtyNine;
+    }
+
+        async function getFemalesFiftyToSixtyNine() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let fiftyToFiftyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 50 to 54 years"].value;
+            let fiftyFiveToFiftyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 55 to 59 years"].value;
+            let sixtyToSixtyOne= await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 60 and 61 years"].value;
+            let sixtyTwoToSixtyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 62 to 64 years"].value;
+            let sixtyFiveToSixtySix = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 65 and 66 years"].value;
+            let sixtySevenToSixtyNine= await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 67 to 69 years"].value;
+
+            let fiftyToSixtyNine = fiftyToFiftyFour + fiftyFiveToFiftyNine + sixtyToSixtyOne + sixtyTwoToSixtyFour + sixtyFiveToSixtySix + sixtySevenToSixtyNine;
+            return fiftyToSixtyNine;
+    }
+
+        async function getFemalesSixyNineAndOver() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+                params: {
+                    q: searchedAddress,
+                    fields: "acs-demographics",
+                    api_key: 'ff72568988944d667192024f60d93761910469d'
+                }
+            });
+            let seventyToSeventyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 70 to 74 years"].value;
+            let seventyFiveToSeventyNine = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 75 to 79 years"].value;
+            let eightyToEightyFour = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 80 to 84 years"].value;
+            let eightyFiveAndOver = await response.data.results[0].fields.acs.demographics["Population by age range"]["Female: 85 years and over"].value;
+
+            let sixtyNineAndOver = seventyToSeventyFour + seventyFiveToSeventyNine + eightyToEightyFour + eightyFiveAndOver;
+            return sixtyNineAndOver;
+    }
+
     // Load google charts
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
 
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawFemaleChart);
     // Draw the chart and set the chart values
-    function drawChart() {
+    async function drawChart() {
+        let malesUnderTen = await getMalesUnderTen();
+        let malesTenToSeventeen = await getMalesTenThroughSeventeen();
+        let malesEighteenToTwentyFour = await getMalesEighteenToTwentyFour();
+        let malesTwentyFiveToThirtyFour = await getMalesTwentyFiveToThirtyFour();
+        let malesThirtyFiveToFourtyNine = await getMalesThirtyFiveToFourtyNine();
+        let malesFiftyToSixtyNine = await getMalesFiftyToSixtyNine();
+        let malesSixyNineAndOver = await getMalesSixyNineAndOver();
         var data = google.visualization.arrayToDataTable([
             ['AgeGroup', 'PopulationPerct'],
-            ['Under 18', 27.9],
-            ['18-24', 8.4],
-            ['25-44', 31.7],
-            ['45-64', 22.6],
-            ['65 and Older', 9.4],
+            ['Under 10', malesUnderTen],
+            ['10-17', malesTenToSeventeen],
+            ['18-24', malesEighteenToTwentyFour],
+            ['25-34', malesTwentyFiveToThirtyFour],
+            ['35-49', malesThirtyFiveToFourtyNine],
+            ['50-69', malesFiftyToSixtyNine],
+            ['69+', malesSixyNineAndOver]
         ]);
 
         // Optional; add a title and set the width and height of the chart
-        var options = { 'title': 'Area Age Demographics', 'width': 550, 'height': 400 };
+        var options = { 'title': 'Male Age Demographics', 'width': 750, 'height': 600, backgroundColor: '#ecfcfd' };
 
         // Display the chart inside the <div> element with id="piechart"
-        var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+        var chart = new google.visualization.PieChart(document.getElementById('malePieChart'));
         chart.draw(data, options);
     }
-</script>
-<br /><br />
+
+        async function drawFemaleChart() {
+        let femalesUnderTen = await getFemalesUnderTen();
+        let femalesTenToSeventeen = await getFemalesTenThroughSeventeen();
+        let femalesEighteenToTwentyFour = await getFemalesEighteenToTwentyFour();
+        let femalesTwentyFiveToThirtyFour = await getFemalesTwentyFiveToThirtyFour();
+        let femalesThirtyFiveToFourtyNine = await getFemalesThirtyFiveToFourtyNine();
+        let femalesFiftyToSixtyNine = await getFemalesFiftyToSixtyNine();
+        let femalesSixyNineAndOver = await getFemalesSixyNineAndOver();
+        var data = google.visualization.arrayToDataTable([
+            ['AgeGroup', 'PopulationPerct'],
+            ['Under 10', femalesUnderTen],
+            ['10-17', femalesTenToSeventeen],
+            ['18-24', femalesEighteenToTwentyFour],
+            ['25-34', femalesTwentyFiveToThirtyFour],
+            ['35-49', femalesThirtyFiveToFourtyNine],
+            ['50-69', femalesFiftyToSixtyNine],
+            ['69+', femalesSixyNineAndOver]
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = { 'title': 'Female Age Demographics', 'width': 750, 'height': 600, backgroundColor: '#ecfcfd'};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('femalePieChart'));
+        chart.draw(data, options);
+    }
+
+        async function getAverageAge() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://api.geocod.io/v1.6/geocode', {
+            params: {
+                q: searchedAddress,
+                fields: "acs-demographics",
+                api_key: 'ff72568988944d667192024f60d93761910469d'
+            }
+        })
+        let averageAge = await response.data.results[0].fields.acs.demographics["Median age"].Total.value;
+        return averageAge;
+    }
+
+    async function displayAverageAge() {
+        document.getElementById("averageAge").innerHTML = await getAverageAge();
+    }
+    getAverageAge();
+    displayAverageAge();
+          </script>
+          <br /><br />
 
 
 
