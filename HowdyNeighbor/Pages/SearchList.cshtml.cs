@@ -39,8 +39,12 @@ namespace HowdyNeighbor.Pages
             string costOfLivingImportance = TempData["costOfLivingImportance"] as string;
             TempData.Keep();
             ViewData["costOfLivingImportance"] = costOfLivingImportance;
-            
-            if(!ModelState.IsValid)
+
+            string internetProvidersImportance = TempData["internetProvidersImportance"] as string;
+            TempData.Keep();
+            ViewData["internetProvidersImportance"] = internetProvidersImportance;
+
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -109,6 +113,17 @@ namespace HowdyNeighbor.Pages
                 return BadRequest();
             }
             return RedirectToPage("/CostOfLiving");
+        }
+
+        public IActionResult OnPostInternetProviders(string searchString)
+        {
+            TempData["searchString"] = searchString;
+            TempData.Keep();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return RedirectToPage("/InternetProviders");
         }
     }
 }
