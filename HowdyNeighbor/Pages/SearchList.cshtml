@@ -255,6 +255,54 @@
             </td>
         </tr>
         <tr>
+            <td class="my-border-bottom my-border-right">
+                @if (ViewData["internetProvidersImportance"] is null)
+                {<input type="checkbox" />}
+                else
+                {<input type="checkbox" checked />}
+            </td>
+            <td class="my-border-none-top">Local Internet Providers</td>
+            <td class="my-border-none-top"><a href="InternetProviders">View Data</a></td>
+            <td class="my-border-bottom my-border-left">
+                @if (ViewData["internetProvidersImportance"] as string == "0" || ViewData["internetProvidersImportance"] is null)
+                {<span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["internetProvidersImportance"] as string == "1")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["internetProvidersImportance"] as string == "2")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["internetProvidersImportance"] as string == "3")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["internetProvidersImportance"] as string == "4")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>}
+                @if (ViewData["internetProvidersImportance"] as string == "5")
+                {<span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>}
+            </td>
+        </tr>
+        <tr>
             <td>
                 @if (ViewData["costOfLivingImportance"] is null)
                 {<input type="checkbox" />}

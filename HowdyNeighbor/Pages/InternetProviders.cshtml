@@ -1,0 +1,63 @@
+﻿@page
+@model HowdyNeighbor.Pages.InternetProvidersModel
+@{
+    ViewData["Title"] = "Internet Providers";
+}
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<h3 class="text-center">Internet Providers for:<br /><strong>@ViewData["searchString"]</strong></h3>
+
+<div class="text-center">
+    <h5>How would you rate these findings?</h5>
+    <form method="post" asp-page-handler="SearchList">
+        <select name="internetProvidersImportance">
+            <option value="0">No Rating</option>
+            <option value="1">1 (Poor)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Great)</option>
+        </select>&nbsp &nbsp
+        <input type="submit" value="Save rating and return to checklist">
+    </form>
+</div>
+<br />
+<h4>
+    View the internet providers that will be available at <strong>@ViewData["searchString"]</strong>
+    <a target="_blank" id="url">here</a>
+</h4>
+
+<br />
+<script>
+
+    async function getZipCode() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: searchedAddress,
+                key: 'AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE',
+                sensor: 'true_or_false'
+            }
+        })
+        let zip = '';
+        let addressComponents = response.data.results[0].address_components;
+        for (var i = 0; i < addressComponents.length; i++) {
+            if (addressComponents[i].types.includes('postal_code')) {
+                zip = response.data.results[0].address_components[i].short_name;
+            }
+        }
+                return zip;
+    }
+
+    async function setInternetProvidersWebsiteUrl() {
+            let zip = await getZipCode();
+            const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+            var url = "https://www.allconnect.com/results/providers?zip=" + zip;
+            document.getElementById("url").setAttribute("href", url);
+    };
+
+    setInternetProvidersWebsiteUrl();
+    getZipCode();
+
+</script>
