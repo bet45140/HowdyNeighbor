@@ -128,3 +128,7 @@ body {
     height: 400px;
     width: 100%;
 }
+
+.no-underline-on-hover:hover {
+    text-decoration: none;
+}

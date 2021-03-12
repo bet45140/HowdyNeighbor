@@ -1,4 +1,7 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using HowdyNeighbor.Areas.Identity.Data
+@inject SignInManager<HowdyNeighborUser> SignInManager
 @model HowdyNeighbor.Pages.MovingListModel
 @{
     ViewData["Title"] = "Moving Checklist";
@@ -9,9 +12,11 @@
         background-color: white;
         table-layout: auto;
     }
+
     tr {
         width: 960px;
     }
+
     td {
         border-top: 1px solid slategray;
         border-bottom: 1px solid slategray;
@@ -38,23 +43,23 @@
         <tbody>
             @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
             {
-            <tr>
-                @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now && !MovingListModel.IDs.Contains(MovingListModel.ChecklistTasks[i].Id))
-                {
-                    <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                    if (@MovingListModel.ChecklistTasks[i].IsComplete)
+                <tr>
+                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now && !MovingListModel.IDs.Contains(MovingListModel.ChecklistTasks[i].Id))
                     {
-                        <td>Complete</td>
+                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
+                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
+                        {
+                            <td>Complete</td>
+                        }
+                        else
+                        {
+                            <td>Incomplete</td>
+                        }
+                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                        <td><input type="checkbox" /></td>
+                        <td><button>Remove</button></td>
                     }
-                    else
-                    {
-                        <td>Incomplete</td>
-                    }
-                    <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
-                    <td><input type="checkbox" /></td>
-                    <td><button>Remove</button></td>
-                }
-            </tr>
+                </tr>
             }
         </tbody>
     </table>
@@ -65,23 +70,23 @@
         <tbody>
             @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
             {
-            <tr>
-                @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now)
-                {
-                    <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                    if (@MovingListModel.ChecklistTasks[i].IsComplete)
+                <tr>
+                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now)
                     {
-                        <td>Complete</td>
+                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
+                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
+                        {
+                            <td>Complete</td>
+                        }
+                        else
+                        {
+                            <td>Incomplete</td>
+                        }
+                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                        <td><input type="checkbox" /></td>
+                        <td><button>Remove</button></td>
                     }
-                    else
-                    {
-                        <td>Incomplete</td>
-                    }
-                    <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
-                    <td><input type="checkbox" /></td>
-                    <td><button>Remove</button></td>
-                }
-            </tr>
+                </tr>
             }
         </tbody>
     </table>
@@ -92,23 +97,23 @@
         <tbody>
             @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
             {
-            <tr>
-                @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
-                {
-                    <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                    if (@MovingListModel.ChecklistTasks[i].IsComplete)
+                <tr>
+                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
                     {
-                        <td>Complete</td>
+                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
+                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
+                        {
+                            <td>Complete</td>
+                        }
+                        else
+                        {
+                            <td>Incomplete</td>
+                        }
+                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                        <td><input type="checkbox" /></td>
+                        <td><button>Remove</button></td>
                     }
-                    else
-                    {
-                        <td>Incomplete</td>
-                    }
-                    <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
-                    <td><input type="checkbox" /></td>
-                    <td><button>Remove</button></td>
-                }
-            </tr>
+                </tr>
             }
         </tbody>
     </table>
@@ -182,4 +187,8 @@
     <strong>Enter date and time for task to be completed:</strong><br />(Will default to current date and time if left blank)<br /><input class="form-control" type="datetime-local" id="taskDate" name="taskDate" />
     <br />
     <input type="submit" />
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <button style="float:right;" asp-page="/MovingList" id="saveMovingListButton">Save Checklist</button>
+    }
 </form>

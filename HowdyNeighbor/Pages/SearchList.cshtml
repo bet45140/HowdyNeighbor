@@ -1,4 +1,7 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using HowdyNeighbor.Areas.Identity.Data
+@inject SignInManager<HowdyNeighborUser> SignInManager
 @model HowdyNeighbor.Pages.SearchListModel
 @{
     ViewData["Title"] = "SearchList";
@@ -351,5 +354,10 @@
             </td>
         </tr>
     </table>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <button style="float:right;" asp-page="/Index" id="saveSearchListButton">Save Checklist</button>
+    }
 </form>
+
 <br />
