@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using HowdyNeighbor.Areas.Identity.Data
+@inject SignInManager<HowdyNeighborUser> SignInManager
+@inject UserManager<HowdyNeighborUser> UserManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,10 +31,29 @@
                 <li class="nav-item">
                     <a class="nav-link nav-style" href="/About"><strong>About Us</strong></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-style" href="Login"><strong>Login</strong></a>
-                </li>
-            </ul>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+                <ul class="nav justify-content-center">
+                    <li>
+                        <button type="submit" class="btn btn-link navbar-btn navbar-link nav-style" style="color:black; vertical-align: middle; font-size:20px;"><strong>Logout</strong></button>
+                    </li>
+                </ul>
+            </form>
+                    <li style="float:right;">
+                        @UserManager.GetUserName(User)
+                    </li>
+                    }
+                    else
+                    {
+                    <li class="nav-item">
+                        <a class="nav-link nav-style" asp-area="Identity" asp-page="/Account/Login"><strong>Login</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-style" asp-area="Identity" asp-page="/Account/Register"><strong>Register</strong></a>
+                    </li>
+                    }
+                </ul>
         </nav>
     </header>
     <br />
