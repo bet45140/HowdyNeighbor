@@ -32,7 +32,7 @@ namespace HowdyNeighbor.Pages.UnitTests
         {
             var pageModel = new MovingListModel();
             pageModel.ModelState.AddModelError("Error", "Bad request: GET method failed in MovingChecklist.cs.");
-            var result = pageModel.OnGet();
+            var result = pageModel.OnGetAsync(1);
             Assert.IsType<BadRequestResult>(result);
         }
 
@@ -40,7 +40,7 @@ namespace HowdyNeighbor.Pages.UnitTests
         public void OnGet_IfValidModel_ReturnPage()
         {
             var pageModel = new MovingListModel();
-            var result = pageModel.OnGet();
+            var result = pageModel.OnGetAsync(1);
             Assert.IsType<PageResult>(result);
         }
     }

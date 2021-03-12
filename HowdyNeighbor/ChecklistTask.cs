@@ -12,6 +12,11 @@ namespace HowdyNeighbor
         public String Action { get; set; }
         public bool IsComplete { get; set; }
         public DateTime Date { get; set; }
+
+        public ChecklistTask()
+        {
+
+        }
         
         public ChecklistTask(int id, String action, bool isComplete, DateTime date)
         {
