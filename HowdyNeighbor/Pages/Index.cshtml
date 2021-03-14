@@ -14,11 +14,11 @@
     <div class="col-sm-6">
         <h3 class="text-shrink">Still Searching?</h3>
         <p>Enter an address below to start your new home search checklist</p>
-        <form method="post" asp-page-handler="SearchList">
+        <form method="post" asp-page-handler="SearchList" id="searchForm">
             <div>
-                <input type="text" class="form-control" name="searchString" placeholder="Enter Address" id="autocomplete" onkeyup="buttonEnabler(this)">
+                <input type="text" class="form-control" name="searchString" placeholder="Enter Address" id="autocomplete" onkeyup="success()">
             </div><br />
-            <input type="submit" value="Search" id="submitButton" disabled/>
+            <input type="button" value="Search" id="submitButton" onclick="return verify()" disabled/>
         </form>
         <br />
     </div>
@@ -29,16 +29,30 @@
     </div>
 </div>
 <script type="text/javascript">
-    function buttonEnabler(autocomplete) {
-        var button = document.getElementById('submitButton');
-        if (autocomplete != '') {
-            button.disabled = false;
-        } else {
-            button.disabled = true;
-        } 
+    function success() {
+        if (document.getElementById("autocomplete").value === "")
+        { 
+            document.getElementById('submitButton').disabled = true; 
+        }
+        else
+        { 
+            document.getElementById('submitButton').disabled = false;
+        }
     }
 
-    let autocomplete;
+    function verify() {
+        if (document.getElementById("autocomplete").value === "") {
+            alert("Please enter a valid address");
+            
+            return false;
+        }
+        else
+        {
+            document.getElementById("searchForm").submit();
+        }
+    }
+
+   // let autocomplete;
     function initAutocomplete() {
     new google.maps.places.Autocomplete(
         document.getElementById("autocomplete"),
