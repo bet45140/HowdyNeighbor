@@ -19,24 +19,35 @@
 
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 
+    <style>
+        a:hover{
+            color: #506D96 !important;
+        }
+    </style>
+
 </head>
 <body style="background-color:#ecfcfd">
     <header>
-        <img id="logo" class="img-fluid" alt="Howdy Neighbor Logo" style="display:block; margin-left:auto; margin-right:auto;">
-        <nav id="nav-background-color" class="img-responsive">
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link nav-style" href="/Index"><strong>Start Over</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-style" href="/About"><strong>About Us</strong></a>
-                </li>
-                @if (SignInManager.IsSignedIn(User))
-                {
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="container" style="font-size:20px; width:auto !important; position:absolute !important;"><img src="~/images/icons8-user-50.png" />Howdy @UserManager.GetUserName(User)</div>
+        }
+            <img id="logo" class="img-fluid" alt="Howdy Neighbor Logo" style="display:block; margin-left:auto; margin-right:auto;">
+
+            <nav id="nav-background-color" class="img-responsive">
+                <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link nav-style" href="/SavedChecklist"><strong>Saved Checklists</strong></a>
+                        <a class="nav-link nav-style" href="/Index"><strong>Start Over</strong></a>
                     </li>
-                }
+                    <li class="nav-item">
+                        <a class="nav-link nav-style" href="/About"><strong>About Us</strong></a>
+                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link nav-style" href="/SavedChecklist"><strong>Saved Checklists</strong></a>
+                        </li>
+                    }
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
@@ -46,9 +57,6 @@
                                 </li>
                             </ul>
                         </form>
-                        <li style="float:right;">
-                            @UserManager.GetUserName(User)
-                        </li>
                     }
                     else
                     {
@@ -60,8 +68,8 @@
                         </li>
                     }
                 </ul>
-        </nav>
-    </header>
+            </nav>
+        </header>
     <br />
 
     <partial name="_CookieConsentPartial" />
