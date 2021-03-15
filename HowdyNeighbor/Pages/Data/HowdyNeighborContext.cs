@@ -13,5 +13,7 @@ namespace HowdyNeighbor.Pages.Data
         {
         }
         public DbSet<ChecklistTask> ChecklistTask { get; set; }
+        public DbSet<Rating> Rating{ get; set; }
+        public DbSet<Address> Address { get; set; }
     }
 }
