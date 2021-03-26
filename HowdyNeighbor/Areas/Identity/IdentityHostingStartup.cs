@@ -18,7 +18,7 @@ namespace HowdyNeighbor.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<HowdyNeighborContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("HowdyNeighborContextConnection")));
+                        context.Configuration.GetConnectionString("HowdyNeighborContext")));
 
                 services.AddDefaultIdentity<HowdyNeighborUser>()
                     .AddEntityFrameworkStores<HowdyNeighborContext>();

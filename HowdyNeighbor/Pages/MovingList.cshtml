@@ -41,26 +41,17 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
-            {
+            @foreach (var item in Model.ChecklistTask) {
                 <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now && !MovingListModel.IDs.Contains(MovingListModel.ChecklistTasks[i].Id))
-                    {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
-                        {
-                            <td>Complete</td>
-                        }
-                        else
-                        {
-                            <td>Incomplete</td>
-                        }
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    @if (item.Date <= DateTime.Now) {
+                        <td>@Html.DisplayFor(checklistItem => item.Action)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.IsComplete)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.Date)</td>
                         <td><input type="checkbox" /></td>
                         <td><button>Remove</button></td>
                     }
                 </tr>
-            }
+             }
         </tbody>
     </table>
     <br />
@@ -68,21 +59,12 @@
     <h3>Tomorrow</h3>
     <table>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
-            {
+            @foreach (var item in Model.ChecklistTask) {
                 <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(1) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now)
-                    {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
-                        {
-                            <td>Complete</td>
-                        }
-                        else
-                        {
-                            <td>Incomplete</td>
-                        }
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    @if (item.Date <= DateTime.Now.AddDays(1) && item.Date > DateTime.Now) {
+                        <td>@Html.DisplayFor(checklistItem => item.Action)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.IsComplete)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.Date)</td>
                         <td><input type="checkbox" /></td>
                         <td><button>Remove</button></td>
                     }
@@ -95,21 +77,12 @@
     <h3>Later this week</h3>
     <table>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
-            {
+            @foreach (var item in Model.ChecklistTask) {
                 <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date <= DateTime.Now.AddDays(7) && MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(1))
-                    {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
-                        {
-                            <td>Complete</td>
-                        }
-                        else
-                        {
-                            <td>Incomplete</td>
-                        }
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    @if (item.Date <= DateTime.Now.AddDays(7) && item.Date > DateTime.Now.AddDays(1)) {
+                        <td>@Html.DisplayFor(checklistItem => item.Action)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.IsComplete)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.Date)</td>
                         <td><input type="checkbox" /></td>
                         <td><button>Remove</button></td>
                     }
@@ -122,21 +95,12 @@
     <h3>Later this month</h3>
     <table>
         <tbody>
-            @for (var i = 0; i < MovingListModel.ChecklistTasks.Count(); i++)
-            {
+            @foreach (var item in Model.ChecklistTask) {
                 <tr>
-                    @if (MovingListModel.ChecklistTasks[i].Date > DateTime.Now.AddDays(7))
-                    {
-                        <td>@MovingListModel.ChecklistTasks[i].Action</td>
-                        if (@MovingListModel.ChecklistTasks[i].IsComplete)
-                        {
-                            <td>Complete</td>
-                        }
-                        else
-                        {
-                            <td>Incomplete</td>
-                        }
-                        <td><span style="color: lightslategray"><i>@MovingListModel.ChecklistTasks[i].Date.ToShortDateString()</i></span></td>
+                    @if (item.Date > DateTime.Now.AddDays(7)) {
+                        <td>@Html.DisplayFor(checklistItem => item.Action)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.IsComplete)</td>
+                        <td>@Html.DisplayFor(checklistItem => item.Date)</td>
                         <td><input type="checkbox" /></td>
                         <td><button>Remove</button></td>
                     }

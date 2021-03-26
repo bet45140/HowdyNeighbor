@@ -10,37 +10,39 @@ namespace HowdyNeighbor.Pages.UnitTests
 {
     public class MovingChecklistPageTests
     {
+        private readonly Data.HowdyNeighborContext _context;
+
         [Fact]
         public void OnPost_IfInvalidModel_ReturnBadRequest()
         {
-            var pageModel = new MovingListModel();
+            var pageModel = new MovingListModel(_context);
             pageModel.ModelState.AddModelError("Error", "Bad request: POST method failed in MovingChecklist.cs.");
-            var result = pageModel.OnPost();
+            var result = pageModel.OnPostAsync();
             Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]
         public void OnPost_IfValidModel_ReturnPage()
         {
-            var pageModel = new MovingListModel();
-            var result = pageModel.OnPost();
+            var pageModel = new MovingListModel(_context);
+            var result = pageModel.OnPostAsync();
             Assert.IsType<PageResult>(result);
         }
 
         [Fact]
         public void OnGet_IfInvalidModel_ReturnBadRequest()
         {
-            var pageModel = new MovingListModel();
+            var pageModel = new MovingListModel(_context);
             pageModel.ModelState.AddModelError("Error", "Bad request: GET method failed in MovingChecklist.cs.");
-            var result = pageModel.OnGetAsync(1);
+            var result = pageModel.OnGetAsync();
             Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]
         public void OnGet_IfValidModel_ReturnPage()
         {
-            var pageModel = new MovingListModel();
-            var result = pageModel.OnGetAsync(1);
+            var pageModel = new MovingListModel(_context);
+            var result = pageModel.OnGetAsync();
             Assert.IsType<PageResult>(result);
         }
     }
