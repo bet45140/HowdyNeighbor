@@ -12,8 +12,16 @@ namespace HowdyNeighbor.Pages.Data
             : base(options)
         {
         }
+
         public DbSet<ChecklistTask> ChecklistTask { get; set; }
         public DbSet<Rating> Rating{ get; set; }
         public DbSet<Address> Address { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ChecklistTask>().ToTable("ChecklistTask");
+            modelBuilder.Entity<Rating>().ToTable("Rating");
+            modelBuilder.Entity<Address>().ToTable("Address");
+        }
     }
 }

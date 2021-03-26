@@ -16,23 +16,10 @@ namespace HowdyNeighbor.Pages
         {
             _context = context;
         }
-
         public IList<ChecklistTask> ChecklistTask { get; set; }
-
         public async Task<IActionResult> OnGetAsync()
         {
-            var tasks = from t in _context.ChecklistTask
-                        select t;
-            ChecklistTask = await tasks.ToListAsync();
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
+            ChecklistTask = await _context.ChecklistTask.ToListAsync();
             if (!ModelState.IsValid)
             {
                 return BadRequest();

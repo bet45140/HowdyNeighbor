@@ -13,23 +13,6 @@ namespace HowdyNeighbor.Pages.UnitTests
         private readonly Data.HowdyNeighborContext _context;
 
         [Fact]
-        public void OnPost_IfInvalidModel_ReturnBadRequest()
-        {
-            var pageModel = new MovingListModel(_context);
-            pageModel.ModelState.AddModelError("Error", "Bad request: POST method failed in MovingChecklist.cs.");
-            var result = pageModel.OnPostAsync();
-            Assert.IsType<BadRequestResult>(result);
-        }
-
-        [Fact]
-        public void OnPost_IfValidModel_ReturnPage()
-        {
-            var pageModel = new MovingListModel(_context);
-            var result = pageModel.OnPostAsync();
-            Assert.IsType<PageResult>(result);
-        }
-
-        [Fact]
         public void OnGet_IfInvalidModel_ReturnBadRequest()
         {
             var pageModel = new MovingListModel(_context);
