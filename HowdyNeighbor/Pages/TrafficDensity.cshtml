@@ -4,8 +4,13 @@
     ViewData["Title"] = "Traffic Density";
 }
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-<h3 class="text-center">Traffic Data for:<br /><strong>@ViewData["searchString"]</strong></h3>
+<style>
+    #map {
+    height: 600px !important;
+    width: 100%;
+}
+</style>
+<h3 class="text-center">Traffic Flow Data for:<br /><strong>@ViewData["searchString"]</strong></h3><br />
 
 <div class="text-center">
     <h5>How would you rate these findings?</h5>
@@ -21,13 +26,12 @@
         <input type="submit" value="Save rating and return to checklist">
     </form>
 </div>
-<br />
-The following map shows the current traffic flow surrounding <strong>@ViewData["searchString"]</strong>:
+<br /><br />
+<h4 style="text-align:center">The following map shows the current traffic flow surrounding <br /><strong>@ViewData["searchString"]</strong><br />
+<br />(We recommend checking this map during busy traffic hours)</h4>
 <br />
 <div id="map"></div>
 <script>
-    //console.log(getLongitude())
-    //console.log(getLatitude())
     async function getLatitude() {
         const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
         const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
