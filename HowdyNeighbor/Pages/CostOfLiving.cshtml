@@ -3,6 +3,21 @@
 @{
     ViewData["Title"] = "CostOfLiving";
 }
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<style>
+    .form-style {
+        width: 50%;
+        background-color: #CADCE6;
+        border: 1px solid slategray;
+        border-radius: 10px;
+        box-shadow: 2px 2px 1px 0px rgba(50, 50, 50, 0.25);
+    }
+
+    .bottom-pad {
+        margin-bottom: 1.5rem;
+    }
+</style>
 
 <h3 class="text-center">Cost of Living Data for:<br /><strong>@ViewData["searchString"]</strong></h3>
 
@@ -20,6 +35,163 @@
         <input type="submit" value="Save rating and return to checklist">
     </form>
 </div>
+<br /><br />
+<h4 style="text-align:center">To compare the cost of living of your current location and <strong>@ViewData["searchString"]</strong>,<br />please enter your current city and state below:</h4>
 <br />
-The following shows the cost of living data for <strong>@ViewData["searchString"]</strong>:
+<div class="container form-style">
+    <section>
+
+        <form>
+            <br />
+            <div class="form-group">
+                <label for="cityInput">City</label>
+                <input type="text" class="form-control" id="cityInput" name="cityInput">
+            </div>
+            <div class="form-group">
+                <label for="stateCodeInput">State</label>
+                <input type="text" class="form-control" id="stateCodeInput" name="stateCodeInput">
+            </div>
+            <a class="btn btn-primary bottom-pad" name="submitLocation " id="submitLocation" onclick="costOfLivingURL()">Submit</a>
+            <br />
+        </form>
+    </section>
+</div>
 <br />
+<p>
+    <h4 style="text-align:center">
+        Or view the cost of living data for <strong>@ViewData["searchString"]</strong><br /> compared to the United States cost of living averages
+        <a target="_blank" id="url">here</a>
+    </h4>
+    <p style="font-size:small; text-align:center;">Howdy Neighbor has no affiliation with any of the websites we provide links to.</p>
+</p>
+
+
+<script>
+    function stateNameToAbbreviation(abbreviation) {
+	let states = {
+		"arizona": "AZ",
+		"alabama": "AL",
+		"alaska": "AK",
+		"arkansas": "AR",
+		"california": "CA",
+		"colorado": "CO",
+		"connecticut": "CT",
+		"district of columbia": "DC",
+		"delaware": "DE",
+		"florida": "FL",
+		"georgia": "GA",
+		"hawaii": "HI",
+		"idaho": "ID",
+		"illinois": "IL",
+		"indiana": "IN",
+		"iowa": "IA",
+		"kansas": "KS",
+		"kentucky": "KY",
+		"louisiana": "LA",
+		"maine": "ME",
+		"maryland": "MD",
+		"massachusetts": "MA",
+		"michigan": "MI",
+		"minnesota": "MN",
+		"mississippi": "MS",
+		"missouri": "MO",
+		"montana": "MT",
+		"nebraska": "NE",
+		"nevada": "NV",
+		"new hampshire": "NH",
+		"new jersey": "NJ",
+		"new mexico": "NM",
+		"new york": "NY",
+		"north carolina": "NC",
+		"north dakota": "ND",
+		"ohio": "OH",
+		"oklahoma": "OK",
+		"oregon": "OR",
+		"pennsylvania": "PA",
+		"rhode island": "RI",
+		"south carolina": "SC",
+		"south dakota": "SD",
+		"tennessee": "TN",
+		"texas": "TX",
+		"utah": "UT",
+		"vermont": "VT",
+		"virginia": "VA",
+		"washington": "WA",
+		"west virginia": "WV",
+		"wisconsin": "WI",
+		"wyoming": "WY",
+		"american samoa": "AS",
+		"guam": "GU",
+		"northern mariana islands": "MP",
+		"puerto rico": "PR",
+		"us virgin islands": "VI",
+		"us minor outlying islands": "UM"
+	}
+
+	let a = abbreviation.trim().replace(/[^\w ]/g, "").toLowerCase(); //Trim, remove all non-word characters with the exception of spaces, and convert to lowercase
+	if(states[a] !== null) {
+		return states[a];
+	}
+
+	return null;
+}
+    async function getStateCode() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: searchedAddress,
+                key: 'AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE'
+            }
+        })
+        let stateCode = '';
+        let addressComponents = response.data.results[0].address_components;
+        for (var i = 0; i < addressComponents.length; i++) {
+            if (addressComponents[i].types[0].includes('administrative_area_level_1')) {
+                stateCode = response.data.results[0].address_components[i].short_name;
+            }
+        }
+     //   console.log(stateCode)
+        return stateCode;
+    }
+
+    async function getCity() {
+        const searchedAddress = @Html.Raw(Json.Serialize(ViewData["searchString"]));
+        const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: searchedAddress,
+                key: 'AIzaSyBTM8Y11rAHhYrzULkGu6JMBo3BmhWtfSE'
+            }
+        })
+        let city = '';
+        let addressComponents = response.data.results[0].address_components;
+        for (var i = 0; i < addressComponents.length; i++) {
+            if (addressComponents[i].types[0].includes('locality')) {
+                city = response.data.results[0].address_components[i].short_name;
+            }
+        }
+        return city;
+    }
+
+
+    async function costOfLivingURL() {
+        let searchedCity = await getCity();
+        let searchedStateCode = await getStateCode();
+        var currentCity = document.getElementById('cityInput').value.trim();
+        var currentState = document.getElementById('stateCodeInput').value.trim();
+        var currentStateCode = stateNameToAbbreviation(currentState)
+        window.open("https://www.bestplaces.net/cost-of-living/" + currentCity + "-" + currentStateCode + "/" + searchedCity + "-" + searchedStateCode + "/50000", "_blank");
+    };
+
+    async function costOfLivingComparedToUsaURL() {
+        let searchedCity = await getCity();
+        let searchedStateCode = await getStateCode();
+        var url = "https://www.bestplaces.net/cost-of-living/" + searchedCity + "-" + searchedStateCode + "/" + searchedCity + "-" + searchedStateCode + "/50000";
+        document.getElementById("url").setAttribute("href", url);
+
+    };
+
+
+    costOfLivingComparedToUsaURL();
+    getStateCode();
+    getCity();
+</script>
