@@ -132,3 +132,8 @@ body {
 .no-underline-on-hover:hover {
     text-decoration: none;
 }
+
+
+a:hover {
+    text-decoration: none !important;
+}

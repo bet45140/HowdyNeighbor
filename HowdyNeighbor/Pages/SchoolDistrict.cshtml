@@ -4,9 +4,37 @@
     ViewData["Title"] = "School District";
 }
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style>
+    main {
+  display: flex;
+  justify-content: center;
+}
 
+table {
+  max-width: 100%;
+  box-shadow: 2px 2px 1px 0px rgba(50, 50, 50, 0.25);
+}
+
+tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+th {
+  background-color: #CADCE6;
+  color: black;
+  font-size: x-large;
+
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5em 1em;
+  font-size: x-large;
+}
+</style>
 <body>
-    <h3 class="text-center">Local School District Information for:<br /><strong>@ViewData["searchString"]</strong></h3>
+    <h3 class="text-center">Local School District Information for:<br /><strong>@ViewData["searchString"]</strong></h3><br />
     <div class="text-center">
         <h5>How would you rate these findings?</h5>
         <form method="post" asp-page-handler="SearchList">
@@ -23,24 +51,26 @@
     </div>
 
     <br /><br />
-    <form method="post" class="my-border-top table-background-color">
-        <table class="table my-border">
+    <main>
+        <table>
             <tr>
-                <th class="my-border-none-left">School Name</th>
-                <th class="my-border">Lowest Grade Offered</th>
-                <th class="my-border-none-right">Highest Grade Offered</th>
+                <th class="my-border">School District</th>
+                <th class="my-border">Grades Offered</th>
             </tr>
-
             <tr>
                 <td class="my-border"><span id="name"></span></td>
-                <td class="my-border-none-top"><span id="gradeLow"></span></td>
-                <td class="my-border"><span id="gradeHigh"></span></td>
+                <td class="my-border"><span id="gradeLow"></span> - <span id="gradeHigh"></span></td>
             </tr>
+
         </table>
-    </form>
+    </main>
+    <br /><br />
     <p>
-        <h4>View detailed information about the schools located near or within this district
-        <a target="_blank" id="url">here</a></h4>
+        <h4 style="text-align:center">
+            View more detailed information about the schools located near or within this district
+            <a target="_blank" id="url">here</a>
+        </h4>
+        <p style="font-size:small; text-align:center;">Howdy Neighbor has no affiliation with any of the websites we provide links to</p>
     </p>
 </body>
 <script>
@@ -114,7 +144,7 @@
             var longitude = await getLongitude();
             var url = "https://www.greatschools.org/search/search.page?lat=" + latitude + "&locationLabel=" +
             searchedAddress + "&locationType=street_address&lon=" + longitude + "&st=public_charter&st=public&st=charter";
-        document.getElementById("url").setAttribute("href", url);
+            document.getElementById("url").setAttribute("href", url);
     };
 
         async function getLongitude() {
