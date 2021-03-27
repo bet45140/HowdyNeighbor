@@ -6,7 +6,7 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<h3 class="text-center">Internet Providers for:<br /><strong>@ViewData["searchString"]</strong></h3>
+<h3 class="text-center">Internet Providers available for:<br /><strong>@ViewData["searchString"]</strong></h3><br />
 
 <div class="text-center">
     <h5>How would you rate these findings?</h5>
@@ -22,11 +22,14 @@
         <input type="submit" value="Save rating and return to checklist">
     </form>
 </div>
-<br />
-<h4>
-    View the internet providers that will be available at <strong>@ViewData["searchString"]</strong>
-    <a target="_blank" id="url">here</a>
-</h4>
+<br /><br />
+<p>
+    <h4 style="text-align:center">
+        View the internet providers that will be available at <strong>@ViewData["searchString"]</strong>
+        <a target="_blank" id="url">here</a>
+    </h4>
+<p style="font-size:small; text-align:center;">Howdy Neighbor has no affiliation with any of the websites we provide links to.</p>
+</p>
 
 <br />
 <script>
