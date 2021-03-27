@@ -4,8 +4,8 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="container" style="width:50%; background-color:#CADCE6; border:1px solid slategray;">
-    <h2>@ViewData["Title"]</h2>
+<div class="container" style="width:50%; background-color:#CADCE6; border:1px solid slategray; border-radius: 10px; box-shadow: 2px 2px 1px 0px rgba(50, 50, 50, 0.25);">
+    <h2 style="padding-top:1.5rem;">@ViewData["Title"]</h2>
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Create a new account.</h4>
             <hr />
