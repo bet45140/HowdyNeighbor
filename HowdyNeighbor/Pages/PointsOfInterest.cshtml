@@ -5,7 +5,7 @@
     // Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h3 class="text-center">Nearby Points of Interest Map for:<br /><strong>@ViewData["searchString"]</strong></h3>
+<h3 class="text-center">Nearby Points of Interest Map for:<br /><strong>@ViewData["searchString"]</strong></h3><br />
 
 <div class="text-center">
     <h5>How would you rate these findings?</h5>
@@ -21,11 +21,14 @@
         <input type="submit" value="Save rating and return to checklist">
     </form>
 </div>
-<br />
-The following map shows the surrounding area and many points of interest<strong>@ViewData["searchString"]</strong>:
-<br />
-<iframe class="iframe-style"
-        frameborder="0"
-        src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w", @ViewData["searchString"])'
-        allowfullscreen></iframe>
+<br /><br />
+      <h4 style="text-align:center">
+          The following map shows the surrounding area and many points of interest near <br /><strong>@ViewData["searchString"]</strong>:</h4>
+          <br />
+          <iframe class="iframe-style" style="height:600px !important"
+                  frameborder="0"
+                  width="600"
+                  height="800"
+                  src='@string.Format("https://www.google.com/maps/embed/v1/search?q={0}&key=AIzaSyB1L7KTY2EoVvuYdz2kWzl155F2L3FX08w&zoom=16", @ViewData["searchString"])'
+                  allowfullscreen></iframe>
 
