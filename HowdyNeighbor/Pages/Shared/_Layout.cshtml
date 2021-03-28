@@ -20,30 +20,36 @@
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 
     <style>
-        a:hover{
+        a:hover {
             color: #506D96 !important;
         }
-       * {
-  margin: 0;
-}
-html, body {
-  height: 100%;
-}
-.page-wrap {
-  min-height: 100%;
-  /* equal to footer height */
-  margin-bottom: -75px; 
-}
-.page-wrap:after {
-  content: "";
-  display: block;
-}
-.site-footer, .page-wrap:after {
-  height:75px; 
-}
-.site-footer {
-  text-align:center;
-}
+
+        * {
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        .page-wrap {
+            min-height: 100%;
+            /* equal to footer height */
+            margin-bottom: -75px;
+        }
+
+            .page-wrap:after {
+                content: "";
+                display: block;
+            }
+
+            .site-footer, .page-wrap:after {
+                height: 75px;
+            }
+
+        .site-footer {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -58,7 +64,15 @@ html, body {
         <nav id="nav-background-color" class="img-responsive">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link nav-style" href="/Index"><strong>Start Over</strong></a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a class="nav-link nav-style" href="/Index"><strong>Start Over</strong></a>
+
+                    }
+                    @if (SignInManager.IsSignedIn(User) == false)
+                    {
+                        <a onclick="return confirm_alert(this)" class="nav-link nav-style" href="/Index"><strong>Start Over</strong></a>
+                    }
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-style" href="/About"><strong>About Us</strong></a>
@@ -118,3 +132,10 @@ html, body {
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+<script>
+
+    function confirm_alert(node) {
+        return confirm("Starting over will delete any current ratings you have made. Are you sure you would like to continue?");
+    }
+
+</script>
