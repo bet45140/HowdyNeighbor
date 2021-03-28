@@ -23,12 +23,27 @@
         a:hover{
             color: #506D96 !important;
         }
-        #footer{
-            bottom:0;
-            width:100%;
-            text-align:center !important;
-            padding-top:10px;
-        }
+       * {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -75px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  height:75px; 
+}
+.site-footer {
+  text-align:center;
+}
     </style>
 
 </head>
@@ -80,10 +95,10 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
+    <div class="container body-content page-wrap">
         @RenderBody()
     </div>
-    <div id="footer">
+    <div class="site-footer">
         <hr class="container body-content" />
         <p>&copy; 2021 - Howdy Neighbor</p>
     </div><!--Bootstrap scripts-->

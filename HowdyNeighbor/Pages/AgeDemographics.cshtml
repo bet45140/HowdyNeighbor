@@ -4,8 +4,73 @@
     ViewData["Title"] = "Age Demographics";
 }
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style>
+#loader {
+  position: fixed;
+  left: 50%;
+  top: 75%;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #CADCE6;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
 
-<h3 class="text-center">Area Age Demographics for:<br /><strong>@ViewData["searchString"]</strong></h3>
+
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+#averageAge {
+   font-size:larger;
+   text-decoration:solid;
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+
+}
+
+table {
+  max-width: 100%;
+  box-shadow: 2px 2px 1px 0px rgba(50, 50, 50, 0.25);
+}
+
+tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+th {
+  background-color: #CADCE6;
+  color: black;
+  font-size: x-large;
+
+}
+
+th,
+td {
+  padding: 0.5em 1em;
+  font-size: x-large;
+}
+</style>
+
+<h3 class="text-center">Community Age Demographics for:<br /><strong>@ViewData["searchString"]</strong></h3><br />
 
 <div class="text-center">
     <h5>How would you rate these findings?</h5>
@@ -20,15 +85,24 @@
         </select>&nbsp &nbsp
         <input type="submit" value="Save rating and return to checklist">
     </form>
-</div><br />
-Average age: <div id="averageAge"></div>
-      <div class="row">
-          
-          <div class="col-sm-6" id="malePieChart"></div>
-
-
-          <div class="col-sm-6"id="femalePieChart"></div>
-      </div>
+</div><br /><br />
+            <body onload="myFunction()">
+                    <main>
+                        <table>
+                            <tr>
+                                <th class="my-border">Average Age</th>
+                            </tr>
+                            <tr>
+                                <td class="my-border"><span id="averageAge"></span></td>
+                            </tr>
+                        </table>
+                    </main>
+                    <div class="row">
+                        <div id="loader"></div>
+                        <div class="col-sm-6" id="malePieChart"></div>
+                        <div class="col-sm-6" id="femalePieChart"></div>
+                    </div>
+            </body>
           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
           <script type="text/javascript">
@@ -352,6 +426,18 @@ Average age: <div id="averageAge"></div>
     async function displayAverageAge() {
         document.getElementById("averageAge").innerHTML = await getAverageAge();
     }
+
+    var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 4000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+
     getAverageAge();
     displayAverageAge();
           </script>
